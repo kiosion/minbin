@@ -3,7 +3,16 @@
 	<p>A (work-in-progress) minimal &amp; self-hostable alternative to pastebin, intended for code</p>
 </div>
 
-<img src=".github/img/1.jpg" />
+<h3>Usage</h3>
+
+Running in dev mode: `npm run dev` 
+
+Running for production: `npm run build` then `npm run start` 
+
+<h3>Interface<h3>
+
+<img src=".github/img/1.jpg" width="800px" />
 
 <h3>To-do</h3>
+
 Check out <a href="TODO.md">TODO.md</a> for a list of planned & in-progress features.
