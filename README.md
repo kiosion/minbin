@@ -6,4 +6,4 @@
 <img src=".github/img/1.jpg" />
 
 <h3>To-do</h3>
-Check out [TODO.md](TODO.md) for a list of planned & in-progress features.
+Check out <a href="TODO.md">TODO.md</a> for a list of planned & in-progress features.
