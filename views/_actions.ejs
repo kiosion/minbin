@@ -1,0 +1,12 @@
+<div class="buttons-wrapper">
+	<a href="/" class="logo">MinBin</a>
+	<div class="buttons">
+		<a href="/new" class="btn">New</a>
+		<% if (locals.saveable) {%>
+		<button class="btn" type="submit">Save</button>
+		<% } %>
+		<% if (locals.id != null) {%>
+		<a href="<%= locals.id %>/new" class="btn">Duplicate</a>
+		<% } %>
+	</div>
+</div>

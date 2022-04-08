@@ -1,0 +1,122 @@
+/* Define some consts */
+:root {
+	--bg-dark: #00002a;
+	--bg-lighter: #00004c;
+	--text-darker: #9191a8;
+	--text-dark: #a4a4bd;
+	--text-light: #d0d0fa;
+	--text-lighter: #fafafa;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@400;500;700&display=swap');
+
+html, body, pre {
+	font-family: 'Poppins', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+pre, code {
+	font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
+}
+
+body {
+	background-color: var(--bg-dark);
+	color: var(--text-light);
+}
+
+.nosel {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.wrapper {
+	display: flex;
+	padding: 1rem .5rem;
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+}
+
+#code-display {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.line-numbers {
+	font-size: inherit;
+	font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
+	color: var(--text-dark);
+	text-align: end;
+}
+
+textarea {
+	font-size: inherit;
+	color: var(--text-light);
+	background-color: transparent;
+	resize: none;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	margin-left: 1rem;
+	min-height: calc(100vh - 2rem);
+	border: none;
+	outline: none;
+	tab-size: 4;
+}
+
+.buttons-wrapper {
+	position: fixed;
+	top: 0;
+	right: 0;
+	opacity: .5;
+	transition: opacity 200ms ease-in-out;
+	background-color: var(--bg-lighter);
+	padding: 1.5rem;
+}
+.buttons-wrapper:hover {
+	opacity: 1;
+}
+
+.logo {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 700;
+	font-size: 2rem;
+	text-align: center;
+	text-decoration: none;
+	color: var(--text-lighter);
+	width: 100%;
+	display: inline-block;
+	transition: text-shadow 200ms ease-in-out;
+}
+.logo:hover {
+	text-shadow: 0 0 .25rem var(--text-light);
+}
+
+.buttons {
+	font-size: 1rem;
+	display: flex;
+	margin-top: .5rem;
+	justify-content: center;
+}
+
+.buttons > * + * {
+	margin-left: .5rem;
+}
+
+.btn {
+	font-size: inherit;
+	cursor: pointer;
+	text-decoration: none;
+	background: none;
+	border: 1px solid var(--text-light);
+	color: var(--text-light);
+	border-radius: .25rem;
+	padding: .25rem .5rem;
+	transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+.btn:hover {
+	background-color: var(--text-light);
+	color: var(--bg-dark);
+}

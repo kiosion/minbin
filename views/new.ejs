@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/5.0.1/autosize.min.js" integrity="sha512-aBxhlAogg9r6Gtes+dsuqW6IQ4Ee0MtjexckbMNOVdxAfi5NSEd38BNEgFiaBWS6cl67r+8OImzxVKDdmswhnA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="/scripts.js"></script>
+	<link rel="stylesheet" href="/styles.css">
+	<title>MinBin</title>
+</head>
+<body>
+	<form action="/save" method="POST">
+		<%- include('_actions.ejs', { saveable: true }) %>
+		<div class="wrapper">
+			<div class="line-numbers nosel">
+				<div style="margin-top:2px;">&gt;</div>
+			</div>
+			<textarea autofocus name="value" id="input" spellcheck="false"><%= locals.text %></textarea>
+		</div>
+	</form>
+	<script>autosize(document.querySelector('textarea'));</script>
+</body>
+</html>
