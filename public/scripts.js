@@ -1,6 +1,15 @@
+// Set line numbers on page load
+$(document).ready(() => {
+	setLineNums();
+});
+
+// Keep focus on textarea
+$(document).click(() => {
+	$('#input').focus();
+});
+
 // On keydown in '.input'
 $(document).on('keydown', '#input', function (e) {
-	console.log('tab pressed');
 	let keyCode = e.keyCode || e.which;
 		if (keyCode == 9) {
 			e.preventDefault();
@@ -12,7 +21,7 @@ $(document).on('keydown', '#input', function (e) {
 				let value = this.value;
 				let before = value.substring(0, start);
 				let after = value.substring(end);
-				let spaces = before.match(/\s/g);
+				let spaces = before.match(/\s/gi);
 				let count = spaces ? spaces.length : 0;
 				if (count > 4) {
 					count = 4;
@@ -40,3 +49,21 @@ $(document).on('keydown', '#input', function (e) {
 			}
 		}
 });
+
+$(document).on('keydown', '#input', () => {
+	setLineNums();
+});
+$(document).on('keyup', '#input', () => {
+	setLineNums();
+});
+
+function setLineNums() {
+	let lines = $('#input').val().split('\n');
+	let lineNum = 1;
+	let lineNumDiv = $('#input').parent().find('.line-numbers');
+	lineNumDiv.empty();
+	for (let line of lines) {
+		lineNumDiv.append(`<div>${lineNum}</div>`);
+		lineNum++;
+	}
+}

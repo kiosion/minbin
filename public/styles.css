@@ -8,9 +8,6 @@
 	--text-lighter: #fafafa;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@400;500;700&display=swap');
-
 html, body, pre {
 	font-family: 'Poppins', sans-serif;
 	margin: 0;
@@ -35,7 +32,7 @@ body {
 .wrapper {
 	display: flex;
 	padding: 1rem .5rem;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	line-height: 1.6rem;
 }
 
@@ -45,25 +42,28 @@ body {
 }
 
 .line-numbers {
-	font-size: inherit;
+	font-size: 1rem;
 	font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
 	color: var(--text-dark);
 	text-align: end;
+	margin-top: 1px;
 }
 
 textarea {
-	font-size: inherit;
+	font-size: 1rem;
 	color: var(--text-light);
 	background-color: transparent;
 	resize: none;
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	margin-left: 1rem;
+	margin-left: 1.16rem;
 	min-height: calc(100vh - 2rem);
 	border: none;
 	outline: none;
 	tab-size: 4;
+	line-height: inherit;
+	font-family: 'Roboto Mono', 'Courier New', Courier, monospace;
 }
 
 .buttons-wrapper {
@@ -71,7 +71,7 @@ textarea {
 	top: 0;
 	right: 0;
 	opacity: .5;
-	transition: opacity 200ms ease-in-out;
+	transition: all 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 	background-color: var(--bg-lighter);
 	padding: 1.5rem;
 }
@@ -80,18 +80,23 @@ textarea {
 }
 
 .logo {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Ubuntu Mono', 'Courier New', Courier, monospace;
 	font-weight: 700;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	text-align: center;
 	text-decoration: none;
 	color: var(--text-lighter);
 	width: 100%;
 	display: inline-block;
-	transition: text-shadow 200ms ease-in-out;
+	transition: all 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 .logo:hover {
 	text-shadow: 0 0 .25rem var(--text-light);
+}
+.logo>i {
+	font-weight: 500;
+	font-style: italic;
+	margin-right: .25rem;
 }
 
 .buttons {
@@ -112,11 +117,12 @@ textarea {
 	background: none;
 	border: 1px solid var(--text-light);
 	color: var(--text-light);
-	border-radius: .25rem;
+	border-radius: .1rem;
 	padding: .25rem .5rem;
-	transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+	transition: all 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 .btn:hover {
 	background-color: var(--text-light);
 	color: var(--bg-dark);
+	box-shadow: 0 0 .35rem var(--text-light);
 }

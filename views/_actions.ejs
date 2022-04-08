@@ -1,12 +1,12 @@
 <div class="buttons-wrapper">
-	<a href="/" class="logo">MinBin</a>
+	<a href="/" class="logo"><i>min</i>Bin</a>
 	<div class="buttons">
-		<a href="/new" class="btn">New</a>
+		<a href="/new" class="btn" aria-label="New paste"><i class="fas fa-plus"></i></a>
 		<% if (locals.saveable) {%>
-		<button class="btn" type="submit">Save</button>
+		<button class="btn" type="submit" aria-label="Save paste"><i class="fas fa-save"></i></button>
 		<% } %>
 		<% if (locals.id != null) {%>
-		<a href="<%= locals.id %>/new" class="btn">Duplicate</a>
+		<a href="<%= locals.id %>/new" class="btn" aria-label="Duplicate paste"><i class="fas fa-copy"></i></a>
 		<% } %>
 	</div>
 </div>

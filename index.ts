@@ -11,7 +11,11 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 // Set up mongoose
-const Doc = require('./models/Document');
+//const Document = require('./models/Document');
+
+import { Document } from './models/Document';
+
+
 console.log('Connecting with: ' + MONGO_URL);
 const mongoose = require('mongoose');
 mongoose.connect(MONGO_URL);
@@ -24,62 +28,61 @@ mongoose.connection
 		console.log('Mongoose connected');
 	});
 
-
-// Homepage
-app.get('/', (req, res) => {
-	const text = `Welcome to MinBin!
+const defText = `Welcome to MinBin!
 
 Use the buttons in the upper right 
 to create a new file to share with others,
 or check out the github repo for more info:
 https://github.com/kiosion/minbin
 
-Servals will die if you abuse this service.`;
-	res.render('display', { text, language: 'plaintext' });
+Servals will die if you abuse this service.
+`;
+
+// Homepage
+app.get('/', (req, res) => {
+	res.render('display', { content: defText, language: 'plaintext' });
 });
 
 // New file
 app.get('/new', (req, res) => {
-	res.render('new');
+	res.render('new', { content: defText });
 });
 // Save file
 app.post('/save', async (req, res) => {
-	const value = req.body.value;
+	const content = req.body.value;
 	try {
-		const document = await Doc.create({ value });
+		const document = await Document.create({ value: content });
 		res.redirect(`/${document.id}`);
 	}
-	catch (err) {
+	catch (err: any) {
 		console.log('Error saving: ' + err);
-		res.render('new', { value });
+		res.render('new', { content: content });
 	}
-
-	console.log(value);
-})
+});
 // View file
 app.get('/:id', async (req, res) => {
 	const id = req.params.id;
 	try {
-		const document = await Doc.findById(id);
-		res.render('display', { text: document.value, id });
+		const document = await Document.findById(id);
+		res.render('display', { content: document.value, id: id });
 	}
-	catch (err) {
+	catch (err: any) {
 		console.log('Error viewing: ' + err);
 		res.redirect('/');
 	}
-})
+});
 // Duplicate file
 app.get('/:id/new', async (req, res) => {
 	const id = req.params.id;
 	try {
-		const document = await Doc.findById(id);
-		res.render('new', { text: document.value });
+		const document = await Document.findById(id);
+		res.render('new', { content: document.value });
 	}
-	catch (err) {
+	catch (err: any) {
 		console.log('Error duplicating: ' + err);
 		res.redirect(`/${id}`);
 	}
-})
+});
 
 // Listen on port 3000
 app.listen(3000);

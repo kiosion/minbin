@@ -18,4 +18,4 @@ const documentScheme = new mongoose.Schema({
 	}
 });
 
-export { documentScheme };
+export const Document = mongoose.model('Document', documentScheme);
