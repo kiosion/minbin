@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express';
+
 require('dotenv').config();
 const { MONGO_USER, MONGO_PASS, MONGO_HOST, MONGO_DB, MONGO_PORT } = process.env;
 const MONGO_URL = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
@@ -15,13 +16,14 @@ console.log('Connecting with: ' + MONGO_URL);
 const mongoose = require('mongoose');
 mongoose.connect(MONGO_URL);
 mongoose.connection
-	.on('error', (err) => {
+	.on('error', (err: any) => {
 		console.log('Mongoose error: ' + err);
 		process.exit(1);
 	})
 	.once('open', () => {
 		console.log('Mongoose connected');
 	});
+
 
 // Homepage
 app.get('/', (req, res) => {
