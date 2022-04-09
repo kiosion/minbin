@@ -1,6 +1,7 @@
 <div align=center>
 	<h1>MinBin</h1>
 	<p>A (work-in-progress) minimal &amp; self-hostable alternative to pastebin, intended for code</p>
+	<p><a href="https://bin.kio.dev/" target="_blank">&gt;&nbsp;bin.kio.dev</a></p>
 </div>
 
 <h3>Usage</h3>
