@@ -1,11 +1,9 @@
 <div align=center>
 	<h1>MinBin</h1>
-	<p>A (work-in-progress) minimal &amp; self-hostable alternative to pastebin, intended for code</p>
+	<p>A minimal &amp; self-hostable alternative to pastebin intended for code</p>
 </div>
 
-<h2>Demo 🚧</h2>
-
-<img src=".github/img/1.jpg" width="800px" />
+<h2>Use ⌨️</h2>
 
 A public instance is available at <a href="https://bin.kio.dev/" target="_blank">https://bin.kio.dev/</a>
 
