@@ -1,19 +1,22 @@
 <div align=center>
 	<h1>MinBin</h1>
 	<p>A (work-in-progress) minimal &amp; self-hostable alternative to pastebin, intended for code</p>
-	<p><a href="https://bin.kio.dev/" target="_blank">&gt;&nbsp;bin.kio.dev</a></p>
 </div>
 
-<h3>Usage</h3>
-
-Running in dev mode: `npm run dev` 
-
-Running for production: `npm run build` then `npm run start` 
-
-<h3>Interface<h3>
+<h2>Demo 🚧</h2>
 
 <img src=".github/img/1.jpg" width="800px" />
 
-<h3>To-do</h3>
+A public instance is available at <a href="https://bin.kio.dev/" target="_blank">https://bin.kio.dev/</a>
 
-Check out <a href="TODO.md">TODO.md</a> for a list of planned & in-progress features.
+<h2>Building 🔨</h2>
+
+- `npm i` to install all dependancies and dev tools
+- Create a .env file in the root directory, and provide MongoDB credentials
+- Then:
+	- `npm run dev` if building for development
+	- `rpm run build`, then `npm run start` if building for production
+
+<h2>Contibute ✍️</h2>
+
+Check out <a href="TODO.md">TODO.md</a> for a list of planned & in-progress features, and feel free to contibute!
