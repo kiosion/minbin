@@ -2,7 +2,7 @@ import express from 'express';
 
 require('dotenv').config();
 const { MONGO_USER, MONGO_PASS, MONGO_HOST, MONGO_DB, MONGO_PORT } = process.env;
-const MONGO_URL = `mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
+const MONGO_URL = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}/${MONGO_DB}?retryWrites=true&w=majority`;
 
 // Set up express
 const app = express();
@@ -11,11 +11,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 // Set up mongoose
-//const Document = require('./models/Document');
-
 import { Document } from './models/Document';
-
-
 console.log('Connecting with: ' + MONGO_URL);
 const mongoose = require('mongoose');
 mongoose.connect(MONGO_URL);

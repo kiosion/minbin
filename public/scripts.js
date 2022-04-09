@@ -1,6 +1,6 @@
 // Set line numbers on page load
 $(document).ready(() => {
-	setLineNums();
+	//setLineNums();
 });
 
 // Keep focus on textarea
@@ -50,12 +50,12 @@ $(document).on('keydown', '#input', function (e) {
 		}
 });
 
-$(document).on('keydown', '#input', () => {
-	setLineNums();
-});
-$(document).on('keyup', '#input', () => {
-	setLineNums();
-});
+// $(document).on('keydown', '#input', () => {
+// 	setLineNums();
+// });
+// $(document).on('keyup', '#input', () => {
+// 	setLineNums();
+// });
 
 function setLineNums() {
 	let lines = $('#input').val().split('\n');
