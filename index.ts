@@ -33,6 +33,7 @@ https://github.com/kiosion/minbin
 
 Servals will die if you abuse this service.
 `;
+const newText = `Paste or type content here...`;
 
 // Homepage
 app.get('/', (req, res) => {
@@ -41,7 +42,7 @@ app.get('/', (req, res) => {
 
 // New file
 app.get('/new', (req, res) => {
-	res.render('new', { content: defText });
+	res.render('new', { content: newText });
 });
 // Save file
 app.post('/save', async (req, res) => {
