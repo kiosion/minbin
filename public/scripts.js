@@ -1,8 +1,3 @@
-// Set line numbers on page load
-$(document).ready(() => {
-	//setLineNums();
-});
-
 // Keep focus on textarea
 $(document).click(() => {
 	$('#input').focus();
@@ -10,6 +5,8 @@ $(document).click(() => {
 
 // On keydown in '.input'
 $(document).on('keydown', '#input', function (e) {
+	if ($('#input').val() === 'Paste or type content here...') $('#input').val('');
+
 	let keyCode = e.keyCode || e.which;
 		if (keyCode == 9) {
 			e.preventDefault();
@@ -49,21 +46,3 @@ $(document).on('keydown', '#input', function (e) {
 			}
 		}
 });
-
-// $(document).on('keydown', '#input', () => {
-// 	setLineNums();
-// });
-// $(document).on('keyup', '#input', () => {
-// 	setLineNums();
-// });
-
-function setLineNums() {
-	let lines = $('#input').val().split('\n');
-	let lineNum = 1;
-	let lineNumDiv = $('#input').parent().find('.line-numbers');
-	lineNumDiv.empty();
-	for (let line of lines) {
-		lineNumDiv.append(`<div>${lineNum}</div>`);
-		lineNum++;
-	}
-}

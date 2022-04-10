@@ -1,6 +1,6 @@
 {
   "name": "minbin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A minimal &amp; self-hostable alternative to pastebin",
   "main": "index.js",
   "scripts": {

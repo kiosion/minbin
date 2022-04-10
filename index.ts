@@ -11,7 +11,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 // Set up mongoose
-import { Document } from './models/Document';
+import { Paste } from './models/Paste';
 console.log('Connecting with: ' + MONGO_URL);
 const mongoose = require('mongoose');
 mongoose.connect(MONGO_URL);
@@ -26,8 +26,8 @@ mongoose.connection
 
 const defText = `Welcome to MinBin!
 
-Use the buttons in the upper right 
-to create a new file to share with others,
+Use the button in the upper right 
+to create a new paste to share with others,
 or check out the github repo for more info:
 https://github.com/kiosion/minbin
 
@@ -46,22 +46,51 @@ app.get('/new', (req, res) => {
 });
 // Save file
 app.post('/save', async (req, res) => {
-	const content = req.body.value;
+	const pasteContent = req.body.value;
+	let pasteID: string = '';
+	let inStr: string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	for (let i = 0; i < 8; i++) {
+		pasteID += inStr.charAt(Math.floor(Math.random() * inStr.length));
+	}
 	try {
-		const document = await Document.create({ value: content });
-		res.redirect(`/${document.id}`);
+		const paste = await Paste.create({ 
+			id: pasteID,
+			value: pasteContent
+		});
+		res.redirect(`/${paste.id}`);
 	}
 	catch (err: any) {
 		console.log('Error saving: ' + err);
-		res.render('new', { content: content });
+		res.render('new', {
+			content: pasteContent
+		});
 	}
 });
 // View file
 app.get('/:id', async (req, res) => {
-	const id = req.params.id;
+	const pasteID = req.params.id;
 	try {
-		const document = await Document.findById(id);
-		res.render('display', { content: document.value, id: id });
+		const paste = await Paste.findOne({ 
+			id: pasteID
+		});
+		if (!paste?.value) {
+			const paste = await Paste.findById(pasteID);
+			if (!paste?.value) {
+				res.redirect('/');
+			}
+			else {
+				res.render('display', {
+					id: pasteID,
+					content: paste.value
+				});
+			}
+		}
+		else {
+			res.render('display', {
+				id: pasteID,
+				content: paste.value
+			});
+		}
 	}
 	catch (err: any) {
 		console.log('Error viewing: ' + err);
@@ -70,14 +99,16 @@ app.get('/:id', async (req, res) => {
 });
 // Duplicate file
 app.get('/:id/new', async (req, res) => {
-	const id = req.params.id;
+	const pasteID = req.params.id;
 	try {
-		const document = await Document.findById(id);
-		res.render('new', { content: document.value });
+		const paste = await Paste.findById(pasteID);
+		res.render('new', {
+			content: paste.value
+		});
 	}
 	catch (err: any) {
 		console.log('Error duplicating: ' + err);
-		res.redirect(`/${id}`);
+		res.redirect(`/${pasteID}`);
 	}
 });
 
