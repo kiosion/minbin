@@ -4,6 +4,5 @@
 
 - [ ] Add option to encrypt (/decrypt)
 	- Key thru URL query string, if not provided, thru popup
-- [ ] Add syntax highlighting for input textarea
-- [ ] Add edit button for creator of paste (thru a cookie storing key maybe?)
+- [ ] Option to 'burn' paste after viewing (delete from DB after view is served to client)
 - [ ] Implement better error handling & input cleansing (none rn lol)
