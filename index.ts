@@ -37,7 +37,7 @@ const newText = `Paste or type content here...`;
 
 // Homepage
 app.get('/', (req, res) => {
-	res.render('display', { content: defText, language: 'plaintext' });
+	res.render('display', { content: defText, language: 'plaintext', title: 'Home' });
 });
 
 // New file
@@ -81,14 +81,16 @@ app.get('/:id', async (req, res) => {
 			else {
 				res.render('display', {
 					id: pasteID,
-					content: paste.value
+					content: paste.value,
+					title: pasteID
 				});
 			}
 		}
 		else {
 			res.render('display', {
 				id: pasteID,
-				content: paste.value
+				content: paste.value,
+				title: pasteID
 			});
 		}
 	}
