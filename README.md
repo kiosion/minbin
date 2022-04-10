@@ -1,5 +1,5 @@
 <div align=center>
-	<h1>MinBin</h1>
+	<h1>minBin</h1>
 	<p>A minimal &amp; self-hostable alternative to pastebin intended for code</p>
 </div>
 
