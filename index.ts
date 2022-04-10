@@ -37,12 +37,19 @@ const newText = `Paste or type content here...`;
 
 // Homepage
 app.get('/', (req, res) => {
-	res.render('display', { content: defText, language: 'plaintext', title: 'Home' });
+	res.render('display', { 
+		content: defText, 
+		language: 'plaintext', 
+		title: 'Home' 
+	});
 });
 
 // New file
 app.get('/new', (req, res) => {
-	res.render('new', { content: newText });
+	res.render('new', { 
+		content: newText,
+		title: 'New paste'
+	});
 });
 // Save file
 app.post('/save', async (req, res) => {
@@ -62,7 +69,8 @@ app.post('/save', async (req, res) => {
 	catch (err: any) {
 		console.log('Error saving: ' + err);
 		res.render('new', {
-			content: pasteContent
+			content: pasteContent,
+			title: 'New paste'
 		});
 	}
 });
