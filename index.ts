@@ -111,14 +111,58 @@ app.get('/:id', async (req, res) => {
 app.get('/:id/new', async (req, res) => {
 	const pasteID = req.params.id;
 	try {
-		const paste = await Paste.findById(pasteID);
-		res.render('new', {
-			content: paste.value
+		const paste = await Paste.findOne({
+			id: pasteID
 		});
+		if (!paste?.value) {
+			const paste = await Paste.findById(pasteID);
+			if (!paste?.value) {
+				res.redirect('/');
+			}
+			else {
+				res.render('new', {
+					content: paste.value,
+					title: 'New paste'
+				});
+			}
+		}
+		else {
+			res.render('new', {
+				content: paste.value,
+				title: 'New paste'
+			});
+		}
 	}
 	catch (err: any) {
 		console.log('Error duplicating: ' + err);
 		res.redirect(`/${pasteID}`);
+	}
+});
+// View raw text
+app.get('/:id/raw', async (req, res) => {
+	const pasteID = req.params.id;
+	try {
+		const paste = await Paste.findOne({
+			id: pasteID
+		});
+		if (!paste?.value) {
+			const paste = await Paste.findById(pasteID);
+			if (!paste?.value) {
+				res.redirect('/');
+			}
+			else {
+				res.set('Content-Type', 'text/html');
+				res.send("<pre>" + paste.value + "</pre>");
+			}
+		}
+		else {
+			res.set('Content-Type', 'text/html');
+			res.send("<pre>" + paste.value + "</pre>");
+		}
+	}
+	catch (err: any) {
+		console.log('Error viewing raw: ' + err);
+		res.redirect('/');
 	}
 });
 
