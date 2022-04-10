@@ -44,7 +44,7 @@ body {
 #code-display {
 	padding-top: 0;
 	padding-bottom: 0;
-	text-shadow: 0 0 .5rem var(--text-even-darker);
+	text-shadow: 0 0 .3rem var(--text-even-darker);
 }
 
 .line-numbers {
