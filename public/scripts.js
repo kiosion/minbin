@@ -38,7 +38,7 @@ const genSalt = () => {
 
 // Init tooltips
 tippy('#newPaste', {
-	content: 'Create new paste',
+	content: 'Create new',
 	placement: 'left',
 	animation: 'fade',
 	theme: 'dark',
@@ -46,7 +46,23 @@ tippy('#newPaste', {
 	duration: [200, 50],
 });
 tippy('#savePaste', {
-	content: 'Save paste',
+	content: 'Save',
+	placement: 'left',
+	animation: 'fade',
+	theme: 'dark',
+	arrow: false,
+	duration: [200, 50],
+});
+tippy('#duplicatePaste', {
+	content: 'Duplicate',
+	placement: 'left',
+	animation: 'fade',
+	theme: 'dark',
+	arrow: false,
+	duration: [200, 50],
+});
+tippy('#viewRaw', {
+	content: 'View raw',
 	placement: 'left',
 	animation: 'fade',
 	theme: 'dark',

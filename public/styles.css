@@ -236,5 +236,6 @@ input:checked + .slider i {
 .tippy-box[data-theme~='dark'] {
 	background-color: var(--bg-dark);
 	color: var(--text-light);
-	box-shadow: 0 0 .25rem var(--text-even-darker);
+	box-shadow: 0 0 .3rem var(--text-even-darker);
+	font-size: .9rem;
 }
