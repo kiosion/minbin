@@ -43,6 +43,11 @@ app.get('/', (req, res) => {
 		title: 'Home' 
 	});
 });
+// Favicon
+app.get('/favicon.ico', (req, res) => {
+	//res.sendFile(__dirname + '/public/favicon.ico');
+	res.sendStatus(404);
+});
 
 // New file
 app.get('/new', (req, res) => {
@@ -55,8 +60,10 @@ app.get('/new', (req, res) => {
 app.post('/save', async (req, res) => {
 	const pasteContent = req.body.value;
 	const pasteEnc = (req.body.encrypt == 1) ? true : false;
+	const pasteBurn = (req.body.burn == 1) ? true : false;
 	console.log(`Saving paste`);
 	console.log(`\tEncrypted: ${pasteEnc}`);
+	console.log(`\tBurn: ${pasteBurn}`);
 	let pasteID: string = '';
 	let inStr: string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 	for (let i = 0; i < 8; i++) {
@@ -67,6 +74,7 @@ app.post('/save', async (req, res) => {
 			id: pasteID,
 			views: 0,
 			encrypted: pasteEnc,
+			burn: pasteBurn,
 			value: pasteContent
 		});
 		// Return paste ID
@@ -87,44 +95,25 @@ app.get('/:id', async (req, res) => {
 		const paste = await Paste.findOne({ 
 			id: pasteID
 		});
-		if (!paste?.value) {
-			const paste = await Paste.findById(pasteID);
-			if (!paste?.value) {
-				res.redirect('/');
-			}
-			else {
-				Paste.findOneAndUpdate({
-					id: pasteID 
-				}, {
-					$inc: { views: 1 }
-				}, {
-					new: true, upsert: true
-				});
-				console.log(`Viewing paste: ${pasteID}`);
-				console.log(`\tEncrypted: ${paste.encrypted}`);
-				res.render('display', {
-					id: pasteID,
-					content: paste.value,
-					encrypted: paste.encrypted,
-					title: pasteID
-				});
-			}
-		}
-		else {
-			Paste.findOneAndUpdate({
-				id: pasteID 
-			}, {
-				$inc: { views: 1 }
-			}, {
-				new: true, upsert: true
-			});
-			console.log(`Viewing paste: ${pasteID}`);
-			console.log(`\tEncrypted: ${paste.encrypted}`);
-			res.render('display', {
-				id: pasteID,
-				content: paste.value,
-				encrypted: paste.encrypted,
-				title: pasteID
+		await Paste.findOneAndUpdate({
+			id: pasteID 
+		}, {
+			$inc: { views: 1 }
+		}, {
+			new: true, upsert: true
+		});
+		console.log(`Viewing paste: ${pasteID}`);
+		console.log(`\tEncrypted: ${paste.encrypted}`);
+		res.render('display', {
+			id: pasteID,
+			content: paste.value,
+			encrypted: paste.encrypted,
+			title: pasteID
+		});
+		if (paste.burn && paste.views > 1) {
+			console.log(`Burning paste: ${pasteID}`);
+			await Paste.deleteOne({
+				id: pasteID
 			});
 		}
 	}

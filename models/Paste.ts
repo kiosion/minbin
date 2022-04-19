@@ -17,6 +17,11 @@ const pasteScheme = new mongoose.Schema({
 		required: true,
 		default: false
 	},
+	burn: {
+		type: Boolean,
+		required: true,
+		default: false
+	},
 	value: {
 		type: String,
 		required: true
