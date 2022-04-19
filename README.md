@@ -9,6 +9,7 @@
 - Tabs + indentations in the editor
 - Line numbers on display
 - Client-side encryption + decryption of pastes
+- Set pastes to burn after viewing
 
 <h2>Use ⌨️</h2>
 
