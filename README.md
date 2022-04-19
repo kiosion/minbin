@@ -7,7 +7,6 @@
 
 - Supports any length text or content
 - Tabs + indentations in the editor
-- Line numbers on display
 - Client-side encryption + decryption of pastes
 - Set pastes to burn after viewing
 
@@ -18,10 +17,10 @@ A public instance is available at <a href="https://bin.kio.dev/" target="_blank"
 <h2>Building 🔨</h2>
 
 - `npm i` to install all dependancies and dev tools
-- Create a .env file in the root directory, and provide MongoDB credentials
+- Create an .env file in the root directory, and provide MongoDB credentials
 - Then:
 	- `npm run dev` if building for development
-	- `rpm run build`, then `npm run start` if building for production
+	- `rpm run build` then `npm run serve` if building for production
 
 <h2>Contibute ✍️</h2>
 
