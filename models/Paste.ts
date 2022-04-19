@@ -2,10 +2,20 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 const pasteScheme = new mongoose.Schema({
-	id : {
-		type : String,
-		required : true,
-		unique : true
+	id: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	views: {
+		type: Number,
+		required: true,
+		default: 0
+	},
+	encrypted: {
+		type: Boolean,
+		required: true,
+		default: false
 	},
 	value: {
 		type: String,

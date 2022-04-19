@@ -3,9 +3,12 @@
 <%- include('_head.ejs', { title: locals.title }) %>
 <body>
 	<%- include('_actions.ejs', { id: locals.id }) %>
+	<% if (locals.encrypted) {%>
+		<div class="alert nosel" role="alert" id="encAlert">
+		</div>
+	<% } %>
 	<div class="wrapper">
 		<div class="line-numbers nosel">
-			<% // Print line numbers for length of code %>
 			<% for (let i = 1; i <= content.split('\n').length; i++) { %>
 				<div><%= i %></div>
 			<% } %>
@@ -15,4 +18,6 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js" integrity="sha512-BNc7saQYlxCL10lykUYhFBcnzdKMnjx5fp5s5wPucDyZ7rKNwCoqJh1GwEAIhuePEK4WM9askJBRsu7ma0Rzvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>hljs.highlightAll();</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="/scripts.js"></script>
 </html>

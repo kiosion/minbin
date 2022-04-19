@@ -2,7 +2,7 @@
 <html lang="en">
 <%- include('_head.ejs', { title: 'New paste' }) %>
 <body>
-	<form action="/save" method="POST">
+	<form id="input-form" action="/save" method="POST">
 		<%- include('_actions.ejs', { saveable: true }) %>
 		<div class="wrapper">
 			<div class="line-numbers nosel">

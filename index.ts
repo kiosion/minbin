@@ -54,17 +54,23 @@ app.get('/new', (req, res) => {
 // Save file
 app.post('/save', async (req, res) => {
 	const pasteContent = req.body.value;
+	const pasteEnc = (req.body.encrypt == 1) ? true : false;
+	console.log(`Saving paste`);
+	console.log(`\tEncrypted: ${pasteEnc}`);
 	let pasteID: string = '';
 	let inStr: string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 	for (let i = 0; i < 8; i++) {
 		pasteID += inStr.charAt(Math.floor(Math.random() * inStr.length));
 	}
 	try {
-		const paste = await Paste.create({ 
+		await Paste.create({ 
 			id: pasteID,
+			views: 0,
+			encrypted: pasteEnc,
 			value: pasteContent
 		});
-		res.redirect(`/${paste.id}`);
+		// Return paste ID
+		res.send(pasteID);
 	}
 	catch (err: any) {
 		console.log('Error saving: ' + err);
@@ -87,17 +93,37 @@ app.get('/:id', async (req, res) => {
 				res.redirect('/');
 			}
 			else {
+				Paste.findOneAndUpdate({
+					id: pasteID 
+				}, {
+					$inc: { views: 1 }
+				}, {
+					new: true, upsert: true
+				});
+				console.log(`Viewing paste: ${pasteID}`);
+				console.log(`\tEncrypted: ${paste.encrypted}`);
 				res.render('display', {
 					id: pasteID,
 					content: paste.value,
+					encrypted: paste.encrypted,
 					title: pasteID
 				});
 			}
 		}
 		else {
+			Paste.findOneAndUpdate({
+				id: pasteID 
+			}, {
+				$inc: { views: 1 }
+			}, {
+				new: true, upsert: true
+			});
+			console.log(`Viewing paste: ${pasteID}`);
+			console.log(`\tEncrypted: ${paste.encrypted}`);
 			res.render('display', {
 				id: pasteID,
 				content: paste.value,
+				encrypted: paste.encrypted,
 				title: pasteID
 			});
 		}
