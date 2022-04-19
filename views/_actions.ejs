@@ -10,12 +10,12 @@
 		<a href="/<%= locals.id %>/raw" class="btn" aria-label="View raw" title="View raw"><i class="fas fa-code"></i></a>
 		<% } %>
 	</div>
-	<div class="options">
-		<% if (locals.saveable) {%>
-		<label class="switch" aria-label="Encrypt paste" title="Encrypt paste">
-			<input type="checkbox" id="encrypt-input" name="encrypt">
-			<span class="slider round" id="encrypt-slider"><i class="fas fa-lock"></i></span>
-		</label>
-		<% } %>
-	</div>
+	<% if (locals.saveable) {%>
+		<div class="options">
+			<label class="switch" aria-label="Encrypt paste" title="Encrypt paste">
+				<input type="checkbox" id="encrypt-input" name="encrypt">
+				<span class="slider round" id="encrypt-slider"><i class="fas fa-lock"></i></span>
+			</label>
+		</div>
+	<% } %>
 </div>
