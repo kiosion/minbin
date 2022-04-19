@@ -3,6 +3,13 @@
 	<p>A minimal &amp; self-hostable alternative to pastebin intended for code</p>
 </div>
 
+<h2>Features ✨</h2>
+
+- Supports any length text or content
+- Tabs + indentations in the editor
+- Line numbers on display
+- Client-side encryption + decryption of pastes
+
 <h2>Use ⌨️</h2>
 
 A public instance is available at <a href="https://bin.kio.dev/" target="_blank">https://bin.kio.dev/</a>
