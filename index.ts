@@ -31,7 +31,7 @@ to create a new paste to share with others,
 or check out the github repo for more info:
 https://github.com/kiosion/minbin
 
-Servals will die if you abuse this service.
+Servers will die if you abuse this service.
 `;
 const newText = `Paste or type content here...`;
 
