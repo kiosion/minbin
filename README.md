@@ -1,7 +1,7 @@
-# minbin
-
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+<div align="center">
+  <h1>minBin</h1>
+  <p>A minimal & self-hostable alternative to pastebin, intended for code or text snippets</p>
+</div>
 
 ## Prerequisites
 
@@ -13,19 +13,16 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone git@github.com:kiosion/minbin.git` this repository
 * `cd minbin`
-* `npm install`
+* `make install` to install deps for both frontend and backend
+* `make dev` to start both dev servers
 
 ## Running / Development
 
-* `yarn dev` (livereload development server)
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
+* `yarn dev-{api,app}` (livereload development servers)
+* View the app at [http://localhost:4200](http://localhost:4200).
+* View the tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
 ### Running Tests
 
@@ -39,16 +36,4 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Building
 
-* `yarn build` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://cli.emberjs.com/release/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+* `yarn build-{api,app}` (production webpack'd versions)
