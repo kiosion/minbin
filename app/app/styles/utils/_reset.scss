@@ -1,0 +1,22 @@
+// Reset stuff
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, abbr, code, img, dl, dt, dd, ol, ul, li, form, label, article, footer, header, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+// Set default fonts
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}

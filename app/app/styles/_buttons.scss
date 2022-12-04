@@ -1,0 +1,141 @@
+.action-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: 18px;
+  opacity: 0.75;
+  background-color: $colour-bg--light;
+  transition: opacity 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  &.focused {
+    opacity: 1;
+  }
+
+  &__logo {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 2.5rem;
+    line-height: 2.25rem;
+    text-decoration: none;
+    color: $colour-text--light;
+    transition: all 50ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+    i {
+      font-style: italic;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $colour-text--lighter;
+      text-shadow: 0 0 0.25rem $colour-text--light;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    column-gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.action-button {
+  @include border-radius('all', 'full');
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 2px solid $colour-text--light;
+  color: $colour-text--light;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  padding: 6px;
+  transition: all 50ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  &:hover,
+  &:focus-visible {
+    background-color: $colour-text--light;
+    color: $colour-bg--dark;
+    box-shadow: 0 0 .3rem $colour-text--light;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+.action-switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 28px;
+  margin: 1rem auto 0 auto;
+
+  &__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__input:focus-visible + &__slider {
+    box-shadow: 0 0 1px $colour-text--light;
+  }
+
+  &__slider {
+    @include border-radius('all', 'large');
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid $colour-text--light;
+    cursor: pointer;
+
+    &,
+    &:before,
+    i {
+      position: absolute;
+      transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    &:before {
+      @include border-radius('all', 'full');
+      content: '';
+      height: 18px;
+      width: 18px;
+      top: 4px;
+      left: 4px;
+      background-color: $colour-text--lighter;
+    }
+
+    i {
+      top: 6px;
+      left: 38px;
+    }
+
+    .checked & {
+      background-color: $colour-text--light;
+
+      &:before {
+        transform: translateX(2.5rem);
+        -webkit-transform: translateX(2.5rem);
+      }
+  
+      i {
+        transform: translateX(-1.4rem);
+        -webkit-transform: translateX(-1.4rem);
+        color: $colour-bg--dark;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import 'utils/reset';
+@import 'utils/colours';
+@import 'utils/mixins';
+@import 'buttons';
+@import 'form';
+@import 'tooltips';
+
+// Misc unsorted styles
+body {
+  background-color: $colour-bg--dark;
+  color: $colour-text--light;
+}
+
+::selection {
+  background: rgba($colour-text--dark, 0.5);
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.route-wrapper {
+  position: relative;
+  padding: 12px;
+  height: calc(100% - 24px);
+  width: calc(100% - 24px);
+}

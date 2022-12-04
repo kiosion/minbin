@@ -1,0 +1,66 @@
+<div
+  class="action-box {{if (eq this.isRaised true) "focused"}}"
+  {{on "mouseenter" (fn (mut this.isRaised) true)}}
+  {{on "mouseleave" (fn (mut this.isRaised) false)}}
+  {{on "focusin" (fn (mut this.isRaised) true)}}
+  {{on "focusout" (fn (mut this.isRaised) false)}}
+  {{on "blur" (fn (mut this.isRaised) false)}}
+>
+  <LinkTo @route="home" class="action-box__logo">
+    <span><i>min</i>Bin</span>
+  </LinkTo>
+  <div class="action-box__actions">
+    <Actions::Button
+      @action={{@actions.create}}
+      @icon="plus"
+      @label="Create new"
+      @tooltip={{hash
+        side="bottom"
+      }}
+    />
+    {{#if (eq @mode "create")}}
+      <Actions::Button
+        @action={{@actions.save}}
+        @icon="save"
+        @label="Save paste"
+        @tooltip={{hash
+          side="bottom"
+        }}
+      />
+    {{/if}}
+    {{#if (eq @mode "show")}}
+      <Actions::Button
+        @action={{@actions.duplicate}}
+        @icon="copy"
+        @label="Duplicate paste"
+        @tooltip={{hash
+          side="bottom"
+        }}
+      />
+      <Actions::Button
+        @action={{@actions.viewRaw}}
+        @icon="code"
+        @label="View raw"
+        @tooltip={{hash
+          side="bottom"
+        }}
+      />
+    {{/if}}
+  </div>
+  {{#if (and this.isRaised (eq @mode "create"))}}
+    <div class="action-box__options">
+      <Actions::Switch
+        @value={{@options.encrypted}}
+        @setValue={{@actions.setEncrypted}}
+        @label="Encrypt paste"
+        @icon="lock"
+      />
+      <Actions::Switch
+        @value={{@options.burn}}
+        @setValue={{@actions.setBurn}}
+        @label="Burn after viewing"
+        @icon="fire"
+      />
+    </div>
+  {{/if}}
+</div>

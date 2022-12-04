@@ -1,0 +1,18 @@
+<button
+  id="{{this.id}}"
+  type="button"
+  class="action-button {{this.buttonClass}}"
+  {{on "click" this.handleClick}}
+  {{on "keyup" this.handleKeyPress}}
+>
+  {{#if @icon}}
+    <i class="fas fa-{{@icon}}" />
+  {{else}}
+    <span>{{@label}}</span>
+  {{/if}}
+  <EmberTooltip
+    @text={{@label}}
+    @side={{or @tooltip.side "left"}}
+    class="tooltip {{or @tooltip.class "action-button__tooltip"}}"
+  />
+</button>

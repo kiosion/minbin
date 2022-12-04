@@ -1,27 +1,54 @@
-<div align=center>
-	<h1>minBin</h1>
-	<p>A minimal &amp; self-hostable alternative to pastebin intended for code</p>
-</div>
+# minbin
 
-<h2>Features ✨</h2>
+This README outlines the details of collaborating on this Ember application.
+A short introduction of this app could easily go here.
 
-- Supports any length text or content
-- Tabs + indentations in the editor
-- Client-side encryption + decryption of pastes
-- Set pastes to burn after viewing
+## Prerequisites
 
-<h2>Use ⌨️</h2>
+You will need the following things properly installed on your computer.
 
-A public instance is available at <a href="https://bin.kio.dev/" target="_blank">https://bin.kio.dev/</a>
+* [Git](https://git-scm.com/)
+* [Node.js](https://nodejs.org/) (with yarn)
+* [Ember CLI](https://cli.emberjs.com/release/)
 
-<h2>Building 🔨</h2>
+## Installation
 
-- `npm i` to install all dependancies and dev tools
-- Create an .env file in the root directory, and provide MongoDB credentials
-- Then:
-	- `npm run dev` if building for development
-	- `rpm run build` then `npm run serve` if building for production
+* `git clone <repository-url>` this repository
+* `cd minbin`
+* `npm install`
 
-<h2>Contibute ✍️</h2>
+## Running / Development
 
-Check out <a href="TODO.md">TODO.md</a> for a list of planned & in-progress features, and feel free to contibute!
+* `yarn dev` (livereload development server)
+* Visit your app at [http://localhost:4200](http://localhost:4200).
+* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+
+### Code Generators
+
+Make use of the many generators for code, try `ember help generate` for more details
+
+### Running Tests
+
+* `yarn test`
+* `yarn test --server`
+
+### Linting
+
+* `yarn lint`
+* `yarn lint:fix`
+
+### Building
+
+* `yarn build` (production)
+
+### Deploying
+
+Specify what it takes to deploy your app.
+
+## Further Reading / Useful Links
+
+* [ember.js](https://emberjs.com/)
+* [ember-cli](https://cli.emberjs.com/release/)
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
