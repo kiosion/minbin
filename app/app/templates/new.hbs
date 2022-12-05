@@ -1,21 +1,19 @@
 {{page-title "New Paste"}}
 
-<RouteWrapper>
-  <Actions::Box
-    @mode="create"
-    @actions={{hash
-      create=(action "refresh")
-      save=(action "savePaste")
-      setEncrypted=(action (mut this.model.encrypted))
-      setBurn=(action (mut this.model.burn))
-    }}
-    @options={{hash
-      encrypted=this.model.encrypted
-      burn=this.model.burn
-    }}
-  />
-  <Paste::Form
-    @mode="create"
-    @paste={{this.model}}
-  />
-</RouteWrapper>
+<Actions::Box
+  @mode="create"
+  @actions={{hash
+    create=(action "refresh")
+    save=(action "save")
+    setEncrypted=(action (mut this.model.encrypted))
+    setBurn=(action (mut this.model.burn))
+  }}
+  @options={{hash
+    encrypted=this.model.encrypted
+    burn=this.model.burn
+  }}
+/>
+<Paste::Form
+  @mode="create"
+  @paste={{this.model}}
+/>

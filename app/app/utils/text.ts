@@ -23,7 +23,10 @@ const countLines = ({ element, mode }: CountLinesArgs) => {
     _buffer.style.zIndex = '-1';
     _buffer.tabIndex = -1;
     _buffer.ariaHidden = 'true';
-    document.body.appendChild(_buffer);
+    (document.querySelector('.route-wrapper') || document.body).appendChild(
+      _buffer
+    );
+    // document.body.appendChild(_buffer);
   }
 
   const cs = window.getComputedStyle(element),

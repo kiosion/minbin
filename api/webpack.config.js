@@ -39,7 +39,7 @@ module.exports = {
         parallel: false
       },
       onBuildEnd: {
-        scripts: NODE_ENV === 'development' ? ['yarn start:dev'] : ['echo "[Webpack] Build finished"'],
+        scripts: NODE_ENV === 'development' ? ['yarn serve'] : ['echo "[Webpack] Build finished"'],
         blocking: false,
         parallel: true
       }

@@ -26,7 +26,8 @@ const GET = async (req: Request, res: Response) => {
         id,
         content: paste.value,
         encrypted: paste.encrypted,
-        title: paste.id
+        title: paste.id,
+        views: paste.views
       }});
 
       if (paste.burn && paste.views >= 1) {

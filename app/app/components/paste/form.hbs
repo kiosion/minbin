@@ -19,7 +19,7 @@
       id="{{this.id}}-content"
       class="paste-input {{@inputClass}}"
       spellcheck={{false}}
-      value={{this.content}}
+      value={{@paste.content}}
       {{on "input" this.handleInput}}
     ></textarea>
   {{else}}

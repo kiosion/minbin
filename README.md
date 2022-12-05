@@ -20,20 +20,19 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `yarn dev-{api,app}` (livereload development servers)
+* `make dev-{api,app}` (livereload development servers)
 * View the app at [http://localhost:4200](http://localhost:4200).
 * View the tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
 ### Running Tests
 
-* `yarn test`
-* `yarn test --server`
+* `make test`
 
 ### Linting
 
-* `yarn lint`
-* `yarn lint:fix`
+* `make lint`
+* `make lint-fix`
 
 ### Building
 
-* `yarn build-{api,app}` (production webpack'd versions)
+* `make build-{api,app}` (production webpack'd versions)

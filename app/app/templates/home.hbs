@@ -1,15 +1,13 @@
 {{page-title "Home"}}
 
-<RouteWrapper>
-  <Actions::Box
-    @mode="home"
-    @actions={{hash
-      create=(fn this.transitionTo "new")
-    }}
-  />
-  <Paste::Form
-    @mode="show"
-    @inputClass="language-plaintext"
-    @paste={{this.paste}}
-  />
-</RouteWrapper>
+<Actions::Box
+  @mode="home"
+  @actions={{hash
+    create=(fn this.transitionTo "new")
+  }}
+/>
+<Paste::Form
+  @mode="show"
+  @inputClass="language-plaintext"
+  @paste={{this.paste}}
+/>

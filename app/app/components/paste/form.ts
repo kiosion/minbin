@@ -107,7 +107,7 @@ export default class PasteForm extends Component<PasteFormSignature['Args']> {
       element.value = inputValue || '';
       this.isNew = false;
     }
-    this.content = element.value;
+    this.args.paste && (this.args.paste.content = element.value);
     this.highlightCode();
   }
 
