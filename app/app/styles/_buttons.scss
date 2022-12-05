@@ -1,9 +1,16 @@
 .action-box {
-  position: fixed;
+  @include border-radius('all', 'medium');
+  position: sticky;
   top: 0;
-  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap-reverse;
   z-index: 1;
   padding: 18px;
+  margin-bottom: 12px;
   opacity: 0.75;
   background-color: $colour-bg--light;
   transition: opacity 100ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -34,7 +41,6 @@
   &__actions {
     display: flex;
     flex-direction: row;
-    margin-top: 16px;
     column-gap: 8px;
     justify-content: center;
     align-items: center;
@@ -42,10 +48,11 @@
 
   &__options {
     display: flex;
-    flex-direction: column;
-    margin-top: 12px;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    gap: 12px;
+    margin-right: 12px;
   }
 }
 
@@ -80,7 +87,6 @@
   display: inline-block;
   width: 70px;
   height: 28px;
-  margin: 1rem auto 0 auto;
 
   &__input {
     opacity: 0;
@@ -98,7 +104,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border: 1px solid $colour-text--light;
+    border: 2px solid $colour-text--light;
     cursor: pointer;
 
     &,
@@ -111,15 +117,15 @@
     &:before {
       @include border-radius('all', 'full');
       content: '';
-      height: 18px;
-      width: 18px;
+      height: 16px;
+      width: 16px;
       top: 4px;
       left: 4px;
       background-color: $colour-text--lighter;
     }
 
     i {
-      top: 6px;
+      top: 5px;
       left: 38px;
     }
 
@@ -127,13 +133,13 @@
       background-color: $colour-text--light;
 
       &:before {
-        transform: translateX(2.5rem);
-        -webkit-transform: translateX(2.5rem);
+        transform: translateX(42px);
+        -webkit-transform: translateX(42px);
       }
   
       i {
-        transform: translateX(-1.4rem);
-        -webkit-transform: translateX(-1.4rem);
+        transform: translateX(-22px);
+        -webkit-transform: translateX(-22px);
         color: $colour-bg--dark;
       }
     }

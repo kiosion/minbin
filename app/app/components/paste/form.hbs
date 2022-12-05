@@ -9,11 +9,13 @@
     id="{{this.id}}-lns"
     class="line-numbers no-select"
     {{did-insert this.renderLineNumbers}}
+    {{did-update this.renderLineNumbers @paste.content}}
     {{did-update this.renderLineNumbers this.content}}
   ></div>
 
   {{#if this.isCreate}}
     {{!-- template-lint-disable no-autofocus-attribute --}}
+    {{!-- template-lint-disable no-down-event-binding --}}
     <textarea
       autofocus={{true}}
       id="{{this.id}}-content"
@@ -21,6 +23,8 @@
       spellcheck={{false}}
       value={{@paste.content}}
       {{on "input" this.handleInput}}
+      {{on "keydown" this.handleKeyDown}}
+      {{on "paste" this.handlePaste}}
     ></textarea>
   {{else}}
     <code

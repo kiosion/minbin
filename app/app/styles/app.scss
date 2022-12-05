@@ -4,11 +4,13 @@
 @import 'buttons';
 @import 'form';
 @import 'tooltips';
+@import 'toasts';
 
 // Misc unsorted styles
 body {
   background-color: $colour-bg--dark;
   color: $colour-text--light;
+  overflow: hidden;
 }
 
 ::selection {
@@ -22,9 +24,60 @@ body {
   user-select: none;
 }
 
-.route-wrapper {
+// App wrapper leaves room for banners / loader at top, and expands the route-wrapper to fill the rest of the screen
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .route-wrapper {
+    position: relative;
+    padding: 12px;
+    height: calc(100% - 24px);
+    width: calc(100% - 24px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+  }
+}
+
+@keyframes loaderSlide {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}
+
+.loader {
+  &-wrapper {
+    display: contents;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+  }
+
   position: relative;
-  padding: 12px;
-  height: calc(100% - 24px);
-  width: calc(100% - 24px);
+  width: 100%;
+  height: 4px;
+  display: inline-block;
+  background: $colour-bg--light;
+  overflow: hidden;
+  z-index: 100;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 25%;
+    height: 4px;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba($colour-text--light, 0.8);
+    animation: loaderSlide 2s linear infinite;
+  }
 }

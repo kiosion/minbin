@@ -1,0 +1,29 @@
+<div
+  {{!-- TODO: Write helper to handle all these states (handle focus in/out in general) --}}
+  class="toast-wrapper toast-wrapper__{{@type}} {{this.classes}} {{if (eq this.isRaised true) "focused"}}"
+  {{on "mouseenter" (fn (mut this.isRaised) true)}}
+  {{on "mouseleave" (fn (mut this.isRaised) false)}}
+  {{on "focusin" (fn (mut this.isRaised) true)}}
+  {{on "focusout" (fn (mut this.isRaised) false)}}
+  {{on "blur" (fn (mut this.isRaised) false)}}
+>
+  <div class="toast-wrapper__inner">
+    <div class="toast-icon">
+      <i class="fas fa-{{@icon}}" />
+    </div>
+    <div class="toast-message">
+      {{@message}}
+    </div>
+  </div>
+  <button
+    class="toast-close"
+    type="button"
+    {{on "click" this.onClose}}
+  >
+    <i class="fas fa-times" />
+    <EmberTooltip
+      @side="bottom"
+      @text="Dismiss"
+    />
+  </button>
+</div>

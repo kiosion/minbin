@@ -1,18 +1,20 @@
 {{page-title this.model.pasteId}}
 
-<Actions::Box
-  @mode="show"
-  @actions={{hash
-    create=(action "create")
-    duplicate=(action "duplicate")
-    viewRaw=(action "viewRaw")
-  }}
-  @options={{hash
-    encrypted=this.model.encrypted
-    burn=this.model.burn
-  }}
-/>
-<Paste::Form
-  @mode="show"
-  @paste={{this.model}}
-/>
+<RouteWrapper>
+  <Actions::Box
+    @mode="show"
+    @actions={{hash
+      create=(action "create")
+      duplicate=(action "duplicate")
+      viewRaw=(action "viewRaw")
+    }}
+    @options={{hash
+      encrypted=this.model.encrypted
+      burn=this.model.burn
+    }}
+  />
+  <Paste::Form
+    @mode="show"
+    @paste={{this.model}}
+  />
+</RouteWrapper>

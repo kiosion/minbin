@@ -10,24 +10,23 @@
     <span><i>min</i>Bin</span>
   </LinkTo>
   <div class="action-box__actions">
-    <Actions::Button
-      @action={{@actions.create}}
-      @icon="plus"
-      @label="Create new"
-      @tooltip={{hash
-        side="bottom"
-      }}
-    />
-    {{#if (eq @mode "create")}}
-      <Actions::Button
-        @action={{@actions.save}}
-        @icon="save"
-        @label="Save paste"
-        @tooltip={{hash
-          side="bottom"
-        }}
-      />
+    {{#if (and true (eq @mode "create"))}}
+      <div class="action-box__options">
+        <Actions::Switch
+          @value={{@options.encrypted}}
+          @setValue={{@actions.setEncrypted}}
+          @label="Encrypt paste"
+          @icon="lock"
+        />
+        <Actions::Switch
+          @value={{@options.burn}}
+          @setValue={{@actions.setBurn}}
+          @label="Burn after viewing"
+          @icon="fire"
+        />
+      </div>
     {{/if}}
+
     {{#if (eq @mode "show")}}
       <Actions::Button
         @action={{@actions.duplicate}}
@@ -46,21 +45,25 @@
         }}
       />
     {{/if}}
+
+    {{#if (eq @mode "create")}}
+      <Actions::Button
+        @action={{@actions.save}}
+        @icon="save"
+        @label="Save paste"
+        @tooltip={{hash
+          side="bottom"
+        }}
+      />
+    {{/if}}
+
+    <Actions::Button
+      @action={{@actions.create}}
+      @icon="plus"
+      @label="Create new"
+      @tooltip={{hash
+        side="bottom"
+      }}
+    />
   </div>
-  {{#if (and this.isRaised (eq @mode "create"))}}
-    <div class="action-box__options">
-      <Actions::Switch
-        @value={{@options.encrypted}}
-        @setValue={{@actions.setEncrypted}}
-        @label="Encrypt paste"
-        @icon="lock"
-      />
-      <Actions::Switch
-        @value={{@options.burn}}
-        @setValue={{@actions.setBurn}}
-        @label="Burn after viewing"
-        @icon="fire"
-      />
-    </div>
-  {{/if}}
 </div>

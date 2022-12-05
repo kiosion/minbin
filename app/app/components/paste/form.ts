@@ -92,6 +92,7 @@ export default class PasteForm extends Component<PasteFormSignature['Args']> {
     for (const line of Array.from(Array(lines).keys())) {
       const ln = document.createElement('div');
       ln.classList.add('line-number');
+      ln.ariaLabel = `Line ${line + 1}`;
       ln.textContent = `${line + 1}`;
       element.appendChild(ln);
     }
@@ -108,7 +109,25 @@ export default class PasteForm extends Component<PasteFormSignature['Args']> {
       this.isNew = false;
     }
     this.args.paste && (this.args.paste.content = element.value);
-    this.highlightCode();
+  }
+
+  @action handleKeyDown(event: KeyboardEvent) {
+    if (event.code === 'Tab') {
+      // TODO: Get selection start, end, and value. Indent all lines between start and end by 2 spaces
+      // If no selection length, indent start of cursor's current line by 2 spaces
+    }
+    if (event.code === 'Tab' && event.shiftKey) {
+      // If shift+tab, do the same but unindent by 2 spaces
+    }
+  }
+
+  @action handlePaste() {
+    // TODO: Finishh
+    this.renderLineNumbers(
+      this.lines as HTMLDivElement,
+      this.args.paste?.content ?? ''
+    );
+    return;
   }
 
   @action handleResize() {
