@@ -4,6 +4,9 @@
   {{#if this.loader.isLoading}}
     <Loader />
   {{/if}}
+  {{#if this.modal.isShowingModal}}
+    <Modal />
+  {{/if}}
   {{#if this.toast.isVisible}}
     <Toast
       @type={{this.toast.type}}

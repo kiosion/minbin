@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import { inject as service } from '@ember/service';
-import { countLines } from 'minbin/utils/text';
+import { getLineNumbers } from 'minbin/utils/text';
 
 export interface PasteFormSignature {
   Args:
@@ -63,6 +63,7 @@ export default class PasteForm extends Component<PasteFormSignature['Args']> {
   // Handle any external updates to the model
   @action handleUpdate() {
     this.content = this.args.paste?.content ?? '';
+    this.renderLineNumbers(this.lines as HTMLDivElement, this.content);
     this.isNew = this.isCreate;
   }
 
@@ -74,26 +75,32 @@ export default class PasteForm extends Component<PasteFormSignature['Args']> {
       return;
     }
 
-    let lines: number | undefined;
+    let linesArr: (string | number)[] = [];
 
     if (this.isCreate) {
-      lines = countLines({
+      linesArr = getLineNumbers({
         element: this.textarea as HTMLTextAreaElement,
         mode: 'create'
       });
     } else {
-      lines = countLines({
+      linesArr = getLineNumbers({
         element: this.textarea as HTMLElement,
         mode: 'show'
       });
     }
 
     element.replaceChildren();
-    for (const line of Array.from(Array(lines).keys())) {
+    for (const line of linesArr) {
       const ln = document.createElement('div');
       ln.classList.add('line-number');
-      ln.ariaLabel = `Line ${line + 1}`;
-      ln.textContent = `${line + 1}`;
+      if (typeof line === 'number') {
+        ln.textContent = line.toString();
+        ln.ariaLabel = `Line ${line}`;
+      } else {
+        ln.classList.add('line-number--empty');
+        ln.ariaHidden = 'true';
+        ln.innerText = '';
+      }
       element.appendChild(ln);
     }
   }

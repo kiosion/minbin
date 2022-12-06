@@ -26,7 +26,8 @@ module.exports = {
   rules: {
     'ember/no-shadow-route-definition': ['off'],
     'ember/no-actions-hash': ['off'],
-    'ember/no-action': ['off']
+    'ember/no-action': ['off'],
+    '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^_*' }]
   },
   overrides: [
     {

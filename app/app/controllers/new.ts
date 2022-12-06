@@ -34,7 +34,12 @@ export default class NewController extends Controller {
   }
 
   @action refresh() {
-    this.router.refresh();
+    if (this.model.hasActualDirtyAttributes) {
+      if (!confirm('Are you sure you want to leave?')) {
+        return;
+      }
+      this.router.refresh();
+    }
   }
 
   @action save() {

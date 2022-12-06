@@ -1,11 +1,6 @@
 <div
-  {{!-- TODO: Write helper to handle all these states (handle focus in/out in general) --}}
   class="toast-wrapper toast-wrapper__{{@type}} {{this.classes}} {{if (eq this.isRaised true) "focused"}}"
-  {{on "mouseenter" (fn (mut this.isRaised) true)}}
-  {{on "mouseleave" (fn (mut this.isRaised) false)}}
-  {{on "focusin" (fn (mut this.isRaised) true)}}
-  {{on "focusout" (fn (mut this.isRaised) false)}}
-  {{on "blur" (fn (mut this.isRaised) false)}}
+  {{on-focus (fn (mut this.isRaised))}}
 >
   <div class="toast-wrapper__inner">
     <div class="toast-icon">

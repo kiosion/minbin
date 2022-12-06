@@ -33,6 +33,21 @@
   color: $colour-text--dark;
   text-shadow: 0 0 .25rem $colour-text--darkest;
   min-height: 100%;
+
+  .line-number {
+    &--empty {
+      display: inline-block;
+      &::before {
+        content: '•';
+        display: block;
+        text-align: center;
+        font-size: 0.8rem;
+        color: $colour-text--light;
+        opacity: 0.25;
+        text-shadow: 0 0 .25rem $colour-text--darkest;
+      }
+    }
+  }
 }
 
 .paste-input {

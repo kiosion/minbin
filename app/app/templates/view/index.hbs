@@ -1,4 +1,4 @@
-{{page-title this.model.pasteId}}
+{{page-title this.paste.pasteId}}
 
 <RouteWrapper>
   <Actions::Box
@@ -9,12 +9,12 @@
       viewRaw=(action "viewRaw")
     }}
     @options={{hash
-      encrypted=this.model.encrypted
-      burn=this.model.burn
+      encrypted=this.paste.encrypted
+      burn=this.paste.burn
     }}
   />
   <Paste::Form
     @mode="show"
-    @paste={{this.model}}
+    @paste={{this.paste}}
   />
 </RouteWrapper>

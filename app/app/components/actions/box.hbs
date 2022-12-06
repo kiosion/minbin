@@ -1,10 +1,6 @@
 <div
   class="action-box {{if (eq this.isRaised true) "focused"}}"
-  {{on "mouseenter" (fn (mut this.isRaised) true)}}
-  {{on "mouseleave" (fn (mut this.isRaised) false)}}
-  {{on "focusin" (fn (mut this.isRaised) true)}}
-  {{on "focusout" (fn (mut this.isRaised) false)}}
-  {{on "blur" (fn (mut this.isRaised) false)}}
+  {{on-focus (fn (mut this.isRaised))}}
 >
   <LinkTo @route="home" class="action-box__logo">
     <span><i>min</i>Bin</span>

@@ -1,0 +1,11 @@
+<div class="modal-window">
+  <div class="modal-window__content">
+    <div class="modal-window__header">
+      <h2 class="modal-window__title">Create new paste</h2>
+      <button class="modal-window__close" type="button" {{on "click" this.closeModal}}>
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    {{ensure-safe-component this.content.component content=this.content}}
+  </div>
+</div>

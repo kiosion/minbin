@@ -32,30 +32,34 @@ export default class ViewRoute extends Route {
   async model({ id, key, iv }: { id: string; key?: string; iv?: string }) {
     const paste = await this.store.findRecord('paste', id);
 
+    let decrypted: boolean | undefined;
+
     if (paste.encrypted) {
       if (!key || !iv) {
-        console.log(key, iv);
         console.error(
           '[Error] Paste is marked as encrypted, but no valid key and/or IV provided. Unable to decrypt.'
         );
         this.toast.show('error', {
           message: 'Unable to decrypt paste, invalid key and/or IV provided.'
         });
-        return paste;
+        decrypted = false;
+        return { paste, decrypted };
       }
       try {
         const decryptedContent = await decrypt(paste.content, key, iv);
         // TODO: Intermediary state for content instead of mutating model
         paste.set('content', decryptedContent);
+        decrypted = true;
       } catch (err: unknown) {
         console.error('[Error] Unable to decrypt paste');
         this.toast.show('error', {
           message:
             'Error while decrypting paste, malformed key and/or IV provided.'
         });
+        decrypted = false;
       }
     }
 
-    return paste;
+    return { paste, decrypted };
   }
 }
