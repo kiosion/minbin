@@ -43,7 +43,7 @@ export default class NewRoute extends Route {
       return paste
         .save()
         .then(() => {
-          this.transitionTo('view', paste.id, {
+          this.router.transitionTo('view', paste.id, {
             queryParams: {
               key,
               iv

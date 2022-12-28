@@ -1,0 +1,35 @@
+# Docker-compose for API and Ember App
+version: '3'
+
+secrets:
+  MONGO_UPW:
+    file: ./mongo_upw.txt
+  MONGO_HOST:
+    file: ./mongo_host.txt
+
+services:
+  api:
+    container_name: minbin-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    secrets:
+      - MONGO_UPW
+      - MONGO_HOST
+    environment:
+      - MONGO_UPW=/run/secrets/MONGO_UPW
+      - MONGO_HOST=/run/secrets/MONGO_HOST
+    network_mode: "host"
+    volumes:
+      - /api
+  ember:
+    container_name: minbin-ember
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    depends_on:
+      - api
+    network_mode: "host"
+    volumes:
+    # Virtual volume for ember-cli
+      - /app

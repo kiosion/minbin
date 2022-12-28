@@ -18,6 +18,7 @@ _old
 **/npm-debug.log*
 **/testem.log
 **/yarn-error.log
+**/mongo*.txt
 
 # ember-try
 **/.node_modules.ember-try/

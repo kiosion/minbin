@@ -8,9 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-setupMongoose();
 setupRoutes(app);
 
-const server = setupServer(app);
+const mongoose = setupMongoose(),
+  server = setupServer(app);
 
-export default server;
+export { server as default, mongoose };

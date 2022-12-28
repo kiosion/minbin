@@ -6,6 +6,8 @@ export type HomeRouteModel = Awaited<ReturnType<HomeRoute['model']>>;
 
 export default class HomeRoute extends Route {
   @service store!: StoreService;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @service media!: any;
 
   model() {
     return {

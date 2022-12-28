@@ -18,11 +18,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install Node
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.12
+      - uses: actions/cache@v3
+        name: Cache node_modules
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/yarn
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: (cd ./app && yarn install);
       - name: Lint
         run: (cd ./app && yarn lint);
@@ -31,14 +42,48 @@ jobs:
     name: "Test"
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      matrix:
+        directory: [app, api]
+      fail-fast: true
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install Node
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.12
+      - uses: actions/cache@v3
+        name: Cache node_modules
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/yarn
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install Dependencies
-        run: (cd ./app && yarn install);
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: (cd ./${{ matrix.directory }} && yarn install);
       - name: Run Tests
-        run: (cd ./app && yarn test);
+        run: (cd ./${{ matrix.directory }} && yarn test);
+
+  deploy:
+    name: "Deploy"
+    runs-on: self-hosted
+    needs: [lint, test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Inject secrets
+        run: |
+          echo "${{ secrets.MONGO_UPW}}" > ./mongo_upw.txt
+          echo "${{ secrets.MONGO_HOST}}" > ./mongo_host.txt
+      - name: Build images
+        run: docker-compose build
+      - name: Run images
+        run: docker-compose up -d
+

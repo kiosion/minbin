@@ -2,18 +2,29 @@ import { config as configEnv } from 'dotenv';
 
 configEnv();
 
-const {
-  MONGO_USER,
-  MONGO_PASS,
+let {
+  MONGO_UPW,
   MONGO_HOST,
-  MONGO_DB
+  NODE_ENV = 'production'
 } = process.env || {};
 
-if (!MONGO_USER || !MONGO_PASS || !MONGO_HOST || !MONGO_DB) {
-  throw new Error('[Env] Missing required MongoDB environment variables');
+if (NODE_ENV === 'production') {
+  try {
+    const fs = require('fs'),
+      path = require('path');
+
+    MONGO_UPW = fs.readFileSync(path.join(MONGO_UPW), 'utf8');
+    MONGO_HOST = fs.readFileSync(path.join(MONGO_HOST), 'utf8');
+  } catch {
+    throw new Error('[ENV] Failed to eval required MongoDB environment variables');
+  }
 }
 
-const MONGO_URL = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}/${MONGO_DB}?retryWrites=true&w=majority`;
+if (!MONGO_UPW || !MONGO_HOST) {
+  throw new Error('[ENV] Missing required MongoDB environment variables');
+}
+
+const MONGO_URL = `mongodb+srv://${MONGO_UPW.trim()}@${MONGO_HOST.trim()}/minbin?retryWrites=true&w=majority`;
 
 export { MONGO_URL };
 
