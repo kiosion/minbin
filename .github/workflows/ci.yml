@@ -85,12 +85,33 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Check changed files in api
+        id: changed-files-api
+        uses: tj-actions/changed-files@v35
+        with:
+          files: |
+            api/**
+      - name: Check changed files in app
+        id: changed-files-app
+        uses: tj-actions/changed-files@v35
+        with:
+          files: |
+            app/**
       - name: Inject secrets
         run: |
           echo "${{ secrets.MONGO_UPW}}" > ./mongo_upw.txt
           echo "${{ secrets.MONGO_HOST}}" > ./mongo_host.txt
+      - name: Build API image
+        if: steps.changed-files-api.outputs.any_changed == 'true'
+        run: |
+          docker-compose build api
+      - name: Build App image
+        if: steps.changed-files-app.outputs.any_changed == 'true'
+        run: |
+          docker-compose build ember
       - name: Build images
-        run: docker-compose build
+        if: steps.changed-files-api.outputs.any_changed == 'false' && steps.changed-files-app.outputs.any_changed == 'false'
+        run: |
+          docker-compose build
       - name: Run images
         run: docker-compose up -d
-
