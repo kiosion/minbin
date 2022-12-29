@@ -7,7 +7,7 @@
  */
 const encrypt = async (
   data: string
-): Promise<{ data: string; key: string; iv: string }> => {
+): Promise<{ data: string; key: string }> => {
   try {
     const key = await window.crypto.subtle.generateKey(
       {
@@ -37,8 +37,7 @@ const encrypt = async (
     );
     return {
       data: encryptedString,
-      key: keyString,
-      iv: btoa(String.fromCharCode(...iv))
+      key: `${keyString}:${btoa(String.fromCharCode(...iv))}`
     };
   } catch (err: unknown) {
     console.error(`[Crypto] Error while encrypting: `, err);
@@ -49,19 +48,21 @@ const encrypt = async (
 /**
  * Decrypt using Crypto web API
  * @param data Data to decrypt
- * @param key Key to decrypt with
- * @param iv IV used in initial encryption
- * @returns Promise containing the decrypted data
+ * @param key Key and IV used for decryption
+ * @returns Promise containing the decrypted data as string
  */
-const decrypt = async (
-  data: string,
-  key: string,
-  iv: string
-): Promise<string> => {
+const decrypt = async (data: string, key: string): Promise<string> => {
   try {
-    const decoded = atob(data),
-      decodedKey = atob(key),
-      decodedIV = atob(iv);
+    const decoded = atob(data);
+
+    let [decodedKey, decodedIV] = key.split(':');
+
+    if (!decodedKey || !decodedIV) {
+      throw new Error('[Crypto] Invalid key provided');
+    }
+
+    decodedKey = atob(decodedKey);
+    decodedIV = atob(decodedIV);
 
     const importedKey = await window.crypto.subtle.importKey(
       'raw',

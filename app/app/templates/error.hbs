@@ -1,1 +1,13 @@
-Oopsie, something went wrong...
+{{page-title "Error"}}
+
+<RouteWrapper>
+  <Actions::Box
+    @mode="home"
+    @actions={{hash
+      create=(fn this.transitionTo "new")
+    }}
+  />
+
+  <h1>Oops, something went wrong...</h1>
+  <p>Sorry about that. Please try again.</p>
+</RouteWrapper>

@@ -11,6 +11,7 @@ Router.map(function () {
   this.route('new');
   this.route('view', { path: '' }, function () {
     this.route('index', { path: '/:id' });
+    // Raw route should be nested under view but not inherit any state or styles (should be a static page)
     this.route('raw', { path: '/:id/raw' });
   });
   this.route('error', { path: '*' });

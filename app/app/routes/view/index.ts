@@ -16,9 +16,6 @@ export default class ViewRoute extends Route {
   queryParams = {
     key: {
       refreshModel: true
-    },
-    iv: {
-      refreshModel: true
     }
   };
 
@@ -29,32 +26,41 @@ export default class ViewRoute extends Route {
     }
   }
 
-  async model({ id, key, iv }: { id: string; key?: string; iv?: string }) {
-    const paste = await this.store.findRecord('paste', id);
+  async model(
+    { id, key }: { id: string; key?: string },
+    transition: Transition
+  ) {
+    const paste = await this.store.findRecord('paste', id).catch(async () => {
+      transition.abort();
+      this.toast.show('error', {
+        message: `Paste not found: ${id}`
+      });
+      await this.router.transitionTo('home');
+      return undefined;
+    });
 
     let decrypted: boolean | undefined;
 
     if (paste.encrypted) {
-      if (!key || !iv) {
+      if (!key) {
         console.error(
-          '[Error] Paste is marked as encrypted, but no valid key and/or IV provided. Unable to decrypt.'
+          '[Warn] Paste is marked as encrypted, but no key provided. Unable to decrypt.'
         );
-        this.toast.show('error', {
-          message: 'Unable to decrypt paste, invalid key and/or IV provided.'
+        this.toast.show('info', {
+          message: 'Paste marked as encrypted, but no decryption key provided.'
         });
         decrypted = false;
         return { paste, decrypted };
       }
       try {
-        const decryptedContent = await decrypt(paste.content, key, iv);
+        const decryptedContent = await decrypt(paste.content, key /*, iv */);
         // TODO: Intermediary state for content instead of mutating model
         paste.set('content', decryptedContent);
         decrypted = true;
       } catch (err: unknown) {
         console.error('[Error] Unable to decrypt paste');
         this.toast.show('error', {
-          message:
-            'Error while decrypting paste, malformed key and/or IV provided.'
+          message: 'Error while decrypting paste, malformed key provided.'
         });
         decrypted = false;
       }

@@ -7,15 +7,15 @@ import type { ViewRouteModel } from 'minbin/routes/view';
 
 export default class ViewController extends Controller {
   @service router!: RouterService;
-
   @tracked model!: ViewRouteModel;
 
   queryParams = [
     {
-      key: { type: 'string' as const },
-      iv: { type: 'string' as const }
+      key: { type: ('string' as const) || ('null' as const) }
     }
   ];
+
+  key = null;
 
   get paste() {
     return this.model.paste;
@@ -27,7 +27,10 @@ export default class ViewController extends Controller {
 
   @action duplicate() {
     return this.router.transitionTo('new', {
-      queryParams: { from: this.paste.pasteId }
+      queryParams: {
+        from: this.paste.pasteId,
+        key: this.paste.encrypted ? this.key : undefined
+      }
     });
   }
 

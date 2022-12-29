@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import { HOMEPAGE_CONTENT } from 'minbin/utils/consts';
 import type StoreService from '@ember-data/store';
 
 export type HomeRouteModel = Awaited<ReturnType<HomeRoute['model']>>;
@@ -11,15 +12,7 @@ export default class HomeRoute extends Route {
 
   model() {
     return {
-      content: `Welcome to MinBin!
-
-Use the button in the upper right 
-to create a new paste to share with others,
-or check out the github repo for more info:
-https://github.com/kiosion/minbin
-
-Servals will die if you abuse this service.
-`,
+      content: HOMEPAGE_CONTENT,
       pasteId: null
     };
   }

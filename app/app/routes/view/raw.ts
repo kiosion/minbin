@@ -14,6 +14,7 @@ export default class ViewRawRoute extends Route {
     if (!id || id.length < 7) {
       // TODO: Throw NotFound here instead of aborting
       transition.abort();
+      throw new Error('Paste not found');
     }
   }
 
