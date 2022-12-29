@@ -1,9 +1,9 @@
 {
   "name": "minbin",
-  "version": "0.0.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Small description for minbin goes here",
-  "repository": "",
+  "description": "Minimal & self-hostable pastebin alternative, intended for code or short text snippets",
+  "repository": "https://github.com/kiosion/minbin.git",
   "license": "MIT",
   "author": "kiosion",
   "directories": {
