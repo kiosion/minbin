@@ -36,4 +36,17 @@ You'll need the following properly installed on your system:
 ### Building
 
 * `make build-{api,app}` (production webpack'd versions)
-* or, `docker-compose build --no-cache` (production docker containers)
+
+## Deploying
+
+* `docker-compose build --no-cache` to build fresh docker containers
+* `docker-compose up -d` to run the containers in the background
+* API will be available at localhost:3000, frontend at localhost:4200. These can then be proxied to a domain of your choice.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or PR if you have any suggestions or find any bugs.
+
+## License
+
+This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) for details.
