@@ -29,17 +29,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.12
-      - uses: actions/cache@v3
-        name: Cache node_modules
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
         with:
-          path: |
-            ~/.npm
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          version: 8
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: (cd ./app && pnpm install);
       - name: Lint
         run: (cd ./app && pnpm lint);
@@ -59,17 +53,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.12
-      - uses: actions/cache@v3
-        name: Cache node_modules
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
         with:
-          path: |
-            ~/.npm
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          version: 8
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: (cd ./${{ matrix.directory }} && pnpm install);
       - name: Run Tests
         run: (cd ./${{ matrix.directory }} && pnpm test);
