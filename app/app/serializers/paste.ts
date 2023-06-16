@@ -1,7 +1,8 @@
 import JSONSerializer from '@ember-data/serializer/json';
 import type Store from '@ember-data/store';
-import type Model from '@ember-data/model';
 import { NotFoundError, InvalidError } from '@ember-data/adapter/error';
+// eslint-disable-next-line ember/use-ember-data-rfc-395-imports
+import type { ModelSchema } from 'ember-data';
 
 type ExpectedResponse =
   | {
@@ -36,7 +37,7 @@ export default class PasteSerializer extends JSONSerializer {
 
   normalizeResponse(
     store: Store,
-    primaryModelClass: Model,
+    primaryModelClass: ModelSchema<string | number>,
     payload: ExpectedResponse,
     id: string | number,
     requestType: string
