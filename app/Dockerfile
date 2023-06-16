@@ -1,4 +1,4 @@
-FROM node:18-slim AS build
+FROM node:18 AS build
 
 RUN apt-get update && apt-get install -y
 
@@ -7,7 +7,7 @@ WORKDIR /emberapp
 
 COPY . .
 
-RUN rm -rf ./node_modules && yarn install --immutable && yarn cache clean
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
 RUN yarn build
 

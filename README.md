@@ -8,8 +8,7 @@
 
 You'll need the following properly installed on your system:
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (w/ yarn)
+* [PNPM](https://pnpm.io/installation)
 * [Ember CLI](https://cli.emberjs.com/release/)
 
 ## Installing

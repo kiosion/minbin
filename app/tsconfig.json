@@ -9,6 +9,7 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noEmit": true,
+    "skipLibCheck": true,
     "paths": {
       "minbin/tests/*": [
         "tests/*"
@@ -23,7 +24,6 @@
   },
   "removeComments": true,
   "rootDir": "./",
-  "skipLibCheck": true,
   "sourceMap": true,
   "strict": true,
   "typeRoots": [

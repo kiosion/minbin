@@ -34,16 +34,15 @@ jobs:
         with:
           path: |
             ~/.npm
-            ~/.cache/yarn
             **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: (cd ./app && yarn install);
+        run: (cd ./app && pnpm install);
       - name: Lint
-        run: (cd ./app && yarn lint);
+        run: (cd ./app && pnpm lint);
 
   test:
     name: "Test"
@@ -65,16 +64,15 @@ jobs:
         with:
           path: |
             ~/.npm
-            ~/.cache/yarn
             **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: (cd ./${{ matrix.directory }} && yarn install);
+        run: (cd ./${{ matrix.directory }} && pnpm install);
       - name: Run Tests
-        run: (cd ./${{ matrix.directory }} && yarn test);
+        run: (cd ./${{ matrix.directory }} && pnpm test);
 
   deploy:
     name: "Deploy"

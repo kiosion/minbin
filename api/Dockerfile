@@ -1,4 +1,4 @@
-FROM node:18-slim AS build
+FROM node:18 AS build
 
 # Install our needed dev deps
 RUN apt-get update && apt-get install -y \
@@ -12,13 +12,12 @@ WORKDIR /api
 
 COPY . .
 
-RUN rm -rf ./node_modules && yarn install --immutable && yarn cache clean
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
 ARG MONGO_UPW
 ARG MONGO_HOST
 
-RUN echo "MONGO_UPW=$(cat $MONGO_UPW)" > .env
-RUN echo "MONGO_HOST=$(cat $MONGO_HOST)" >> .env
+RUN echo "MONGO_UPW=$(cat $MONGO_UPW)" > .env && echo "MONGO_HOST=$(cat $MONGO_HOST)" >> .env
 
 RUN yarn build
 

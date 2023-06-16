@@ -37,8 +37,8 @@
   "description": "",
   "scripts": {
     "serve": "node ./dist/index.js",
-    "build": "yarn webpack --config ./webpack.config.js --mode production",
-    "dev": "NODE_ENV=development yarn webpack --config ./webpack.config.js --mode development",
+    "build": "pnpm webpack --config ./webpack.config.js --mode production",
+    "dev": "NODE_ENV=development pnpm webpack --config ./webpack.config.js --mode development",
     "test": "jest"
   }
 }
