@@ -7,9 +7,7 @@ WORKDIR /emberapp
 
 COPY . .
 
-RUN npm install -g pnpm && pnpm install --frozen-lockfile
-
-RUN yarn build
+RUN npm install -g pnpm && pnpm install --frozen-lockfile && pnpm build
 
 # For production we just need the 'dist' dir and a barebones NGINX proxy
 FROM nginx:1.21.3-alpine AS server
