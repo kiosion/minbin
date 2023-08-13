@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import Service from '@ember/service';
 import hljs from 'highlight.js';
 

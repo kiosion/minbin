@@ -4,6 +4,12 @@ import { NotFoundError, InvalidError } from '@ember-data/adapter/error';
 // eslint-disable-next-line ember/use-ember-data-rfc-395-imports
 import type { ModelSchema } from 'ember-data';
 
+declare module 'ember-data/types/registries/serializer' {
+  export default interface SerializerRegistry {
+    paste: PasteSerializer;
+  }
+}
+
 type ExpectedResponse =
   | {
       status: 200;

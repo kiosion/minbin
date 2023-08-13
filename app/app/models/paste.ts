@@ -1,6 +1,12 @@
 import Model, { attr } from '@ember-data/model';
 import { DEFAULT_PASTE_CONTENT } from 'minbin/utils/consts';
 
+declare module 'ember-data/types/registries/model' {
+  export default interface ModelRegistry {
+    paste: PasteModel;
+  }
+}
+
 export default class PasteModel extends Model {
   @attr('string') pasteId!: string | null;
 

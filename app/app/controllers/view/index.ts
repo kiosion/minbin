@@ -7,7 +7,9 @@ import type { ViewRouteModel } from 'minbin/routes/view';
 
 export default class ViewController extends Controller {
   @service router!: RouterService;
-  @tracked model!: ViewRouteModel;
+  // Since the Model may return early, TS sees it as possibly undefined.
+  // In reality, if it returns a Transition early it will never reach the SetupController hook.
+  @tracked model!: NonNullable<ViewRouteModel>;
 
   queryParams = [
     {
@@ -35,6 +37,6 @@ export default class ViewController extends Controller {
   }
 
   @action viewRaw() {
-    return this.router.transitionTo('view.raw', this.paste.pasteId);
+    return this.router.transitionTo('view.raw', this.paste.pasteId!);
   }
 }

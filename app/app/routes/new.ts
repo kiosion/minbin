@@ -7,7 +7,6 @@ import type StoreService from '@ember-data/store';
 import type RouterService from '@ember/routing/router-service';
 import type Transition from '@ember/routing/transition';
 import type ToastService from 'minbin/services/toast';
-import type PasteModel from 'minbin/models/paste';
 
 export type NewRouteModel = Awaited<ReturnType<NewRoute['model']>>;
 
@@ -68,7 +67,7 @@ export default class NewRoute extends Route {
       }
     }
 
-    const paste: PasteModel = this.store.createRecord('paste', {
+    const paste = this.store.createRecord('paste', {
       content,
       encrypted: false,
       burn: false

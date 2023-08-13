@@ -26,18 +26,26 @@ export default class ViewRoute extends Route {
     }
   }
 
+  async notFound(transition: Transition, id: string) {
+    transition.abort();
+    this.toast.show('error', {
+      message: `Paste not found: ${id}`
+    });
+    await this.router.transitionTo('home');
+    return undefined;
+  }
+
   async model(
     { id, key }: { id: string; key?: string },
     transition: Transition
   ) {
-    const paste = await this.store.findRecord('paste', id).catch(async () => {
-      transition.abort();
-      this.toast.show('error', {
-        message: `Paste not found: ${id}`
-      });
-      await this.router.transitionTo('home');
-      return undefined;
-    });
+    const paste = await this.store
+      .findRecord('paste', id)
+      .catch(() => undefined);
+
+    if (!paste) {
+      return await this.notFound(transition, id);
+    }
 
     let decrypted: boolean | undefined;
 
@@ -55,7 +63,7 @@ export default class ViewRoute extends Route {
       try {
         const decryptedContent = await decrypt(paste.content, key /*, iv */);
         // TODO: Intermediary state for content instead of mutating model
-        paste.set('content', decryptedContent);
+        paste.content = decryptedContent;
         decrypted = true;
       } catch (err: unknown) {
         console.error('[Error] Unable to decrypt paste');
