@@ -10,9 +10,10 @@ interface showProps {
 
 export default class ToastService extends Service {
   @tracked isVisible = false;
-  @tracked message!: string;
-  @tracked type!: 'success' | 'error' | 'info';
-  @tracked icon!: string;
+
+  declare message: string;
+  declare type: 'success' | 'error' | 'info';
+  declare icon: string;
 
   @action show(type: typeof this.type, { message, icon, duration }: showProps) {
     this.isVisible = true;

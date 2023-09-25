@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import type RouterService from '@ember/routing/router-service';
 import type StoreService from '@ember-data/store';
@@ -8,10 +8,10 @@ import type Transition from '@ember/routing/transition';
 import type { NewRouteModel } from 'minbin/routes/new';
 
 export default class NewController extends Controller {
-  @service router!: RouterService;
-  @service store!: StoreService;
+  @service declare router: RouterService;
+  @service declare store: StoreService;
 
-  @tracked model!: NewRouteModel;
+  @tracked declare model: NewRouteModel;
 
   constructor(properties?: object) {
     super(properties);
@@ -29,20 +29,20 @@ export default class NewController extends Controller {
     });
   }
 
-  @action transitionTo(route: string) {
+  transitionTo = (route: string) => {
     return this.router.transitionTo(route);
-  }
+  };
 
-  @action refresh() {
+  refresh = () => {
     if (this.model.hasActualDirtyAttributes) {
       if (!confirm('Are you sure you want to leave?')) {
         return;
       }
       this.router.refresh();
     }
-  }
+  };
 
-  @action save() {
+  save = () => {
     this.send('savePaste');
-  }
+  };
 }

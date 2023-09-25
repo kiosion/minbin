@@ -10,13 +10,13 @@
       <div class="action-box__options">
         <Actions::Switch
           @value={{@options.encrypted}}
-          @setValue={{@actions.setEncrypted}}
+          @setValue={{@fns.setEncrypted}}
           @label="Encrypt paste"
           @icon="lock"
         />
         <Actions::Switch
           @value={{@options.burn}}
-          @setValue={{@actions.setBurn}}
+          @setValue={{@fns.setBurn}}
           @label="Burn after viewing"
           @icon="fire"
         />
@@ -25,17 +25,17 @@
 
     {{#if (eq @mode "show")}}
       <Actions::Button
-        @action={{@actions.duplicate}}
-        @icon="copy"
+        @fn={{@fns.duplicate}}
+        @icon="code"
         @label="Duplicate paste"
         @tooltip={{hash
           side="bottom"
         }}
       />
       <Actions::Button
-        @action={{@actions.viewRaw}}
-        @icon="code"
-        @label="View raw"
+        @fn={{@fns.copy}}
+        @icon="copy"
+        @label="Copy paste"
         @tooltip={{hash
           side="bottom"
         }}
@@ -44,7 +44,7 @@
 
     {{#if (eq @mode "create")}}
       <Actions::Button
-        @action={{@actions.save}}
+        @fn={{@fns.save}}
         @icon="save"
         @label="Save paste"
         @tooltip={{hash
@@ -54,7 +54,7 @@
     {{/if}}
 
     <Actions::Button
-      @action={{@actions.create}}
+      @fn={{@fns.create}}
       @icon="plus"
       @label="Create new"
       @tooltip={{hash

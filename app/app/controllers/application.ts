@@ -1,9 +1,12 @@
 import Controller from '@ember/controller';
 import breakpoints from 'minbin/breakpoints';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+
 import type LoaderService from 'minbin/services/loader';
 import type ModalService from 'minbin/services/modal';
 import type ToastService from 'minbin/services/toast';
+import type { ApplicationRouteModel } from 'minbin/routes/application';
 
 export default class ApplicationController extends Controller {
   @service loader!: LoaderService;
@@ -11,6 +14,8 @@ export default class ApplicationController extends Controller {
   @service modal!: ModalService;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @service media!: any;
+
+  @tracked declare model: ApplicationRouteModel;
 
   allBreakpoints: string[];
 

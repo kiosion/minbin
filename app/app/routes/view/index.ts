@@ -1,17 +1,21 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { decrypt } from 'minbin/utils/crypto';
+
 import type StoreService from '@ember-data/store';
 import type RouterService from '@ember/routing/router-service';
 import type Transition from '@ember/routing/transition';
 import type ToastService from 'minbin/services/toast';
+import type ViewController from 'minbin/controllers/view';
 
 export type ViewRouteModel = Awaited<ReturnType<ViewRoute['model']>>;
 
 export default class ViewRoute extends Route {
-  @service store!: StoreService;
-  @service router!: RouterService;
-  @service toast!: ToastService;
+  @service declare store: StoreService;
+  @service declare router: RouterService;
+  @service declare toast: ToastService;
+
+  declare controller: ViewController;
 
   queryParams = {
     key: {
@@ -47,9 +51,7 @@ export default class ViewRoute extends Route {
       return await this.notFound(transition, id);
     }
 
-    let decrypted: boolean | undefined;
-
-    if (paste.encrypted) {
+    if (!paste.decrypted) {
       if (!key) {
         console.error(
           '[Warn] Paste is marked as encrypted, but no key provided. Unable to decrypt.'
@@ -57,23 +59,23 @@ export default class ViewRoute extends Route {
         this.toast.show('info', {
           message: 'Paste marked as encrypted, but no decryption key provided.'
         });
-        decrypted = false;
-        return { paste, decrypted };
+        paste.decrypted = false;
+        return { paste };
       }
       try {
         const decryptedContent = await decrypt(paste.content, key /*, iv */);
         // TODO: Intermediary state for content instead of mutating model
         paste.content = decryptedContent;
-        decrypted = true;
+        paste.decrypted = true;
       } catch (err: unknown) {
         console.error('[Error] Unable to decrypt paste');
         this.toast.show('error', {
           message: 'Error while decrypting paste, malformed key provided.'
         });
-        decrypted = false;
+        paste.decrypted = false;
       }
     }
 
-    return { paste, decrypted };
+    return { paste };
   }
 }

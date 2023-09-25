@@ -4,12 +4,13 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 import type RouterService from '@ember/routing/router-service';
 import type { ViewRouteModel } from 'minbin/routes/view';
+import type ToastService from 'minbin/services/toast';
 
 export default class ViewController extends Controller {
-  @service router!: RouterService;
-  // Since the Model may return early, TS sees it as possibly undefined.
-  // In reality, if it returns a Transition early it will never reach the SetupController hook.
-  @tracked model!: NonNullable<ViewRouteModel>;
+  @service declare router: RouterService;
+  @service declare toast: ToastService;
+
+  @tracked declare model: NonNullable<ViewRouteModel>;
 
   queryParams = [
     {
@@ -36,7 +37,12 @@ export default class ViewController extends Controller {
     });
   }
 
-  @action viewRaw() {
-    return this.router.transitionTo('view.raw', this.paste.pasteId!);
+  @action copy() {
+    navigator.clipboard.writeText(this.paste.content).then(() => {
+      this.toast.show('success', {
+        message: 'Copied to clipboard',
+        duration: 6000
+      });
+    });
   }
 }

@@ -25,7 +25,7 @@ export interface DidResizeModifierSignature {
 }
 
 export default class DidResizeModifier extends Modifier<DidResizeModifierSignature> {
-  @service resizeObserver!: ResizeObserverService;
+  @service declare resizeObserver: ResizeObserverService;
 
   callback!: () => void;
   element!: Element;

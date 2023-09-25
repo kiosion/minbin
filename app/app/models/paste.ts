@@ -1,4 +1,5 @@
 import Model, { attr } from '@ember-data/model';
+import { tracked } from '@glimmer/tracking';
 import { DEFAULT_PASTE_CONTENT } from 'minbin/utils/consts';
 
 declare module 'ember-data/types/registries/model' {
@@ -17,6 +18,15 @@ export default class PasteModel extends Model {
   @attr('boolean') burn!: boolean;
 
   @attr('number') views!: number | null;
+
+  @tracked _decrypted = false;
+
+  get decrypted() {
+    return this.encrypted && this._decrypted;
+  }
+  set decrypted(value: boolean) {
+    this._decrypted = value;
+  }
 
   get hasDefaultContent() {
     return this.content === DEFAULT_PASTE_CONTENT;

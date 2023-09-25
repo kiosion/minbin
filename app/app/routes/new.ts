@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 import { DEFAULT_PASTE_CONTENT } from 'minbin/utils/consts';
 import { encrypt, decrypt } from 'minbin/utils/crypto';
@@ -7,13 +7,16 @@ import type StoreService from '@ember-data/store';
 import type RouterService from '@ember/routing/router-service';
 import type Transition from '@ember/routing/transition';
 import type ToastService from 'minbin/services/toast';
+import type NewController from 'minbin/controllers/new';
 
 export type NewRouteModel = Awaited<ReturnType<NewRoute['model']>>;
 
 export default class NewRoute extends Route {
-  @service store!: StoreService;
-  @service router!: RouterService;
-  @service toast!: ToastService;
+  @service declare store: StoreService;
+  @service declare router: RouterService;
+  @service declare toast: ToastService;
+
+  declare controller: NewController;
 
   queryParams = {
     from: {

@@ -3,11 +3,11 @@
 <RouteWrapper>
   <Actions::Box
     @mode="create"
-    @actions={{hash
-      create=(action "refresh")
-      save=(action "save")
-      setEncrypted=(action (mut this.model.encrypted))
-      setBurn=(action (mut this.model.burn))
+    @fns={{hash
+      create=(fn this.refresh)
+      save=(fn this.save)
+      setEncrypted=(fn (mut this.model.encrypted))
+      setBurn=(fn (mut this.model.burn))
     }}
     @options={{hash
       encrypted=this.model.encrypted

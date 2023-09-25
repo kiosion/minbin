@@ -3,10 +3,10 @@
 <RouteWrapper>
   <Actions::Box
     @mode="show"
-    @actions={{hash
-      create=(action "create")
-      duplicate=(action "duplicate")
-      viewRaw=(action "viewRaw")
+    @fns={{hash
+      create=(fn this.create)
+      duplicate=(fn this.duplicate)
+      copy=(fn this.copy)
     }}
     @options={{hash
       encrypted=this.paste.encrypted

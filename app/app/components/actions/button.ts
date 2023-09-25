@@ -1,10 +1,10 @@
 import Component from '@glimmer/component';
 import { guidFor } from '@ember/object/internals';
-import { action } from '@ember/object';
+// import { action } from '@ember/object';
 
 export interface ActionButtonSignature {
   Args: {
-    action: () => void;
+    fn: () => void;
     icon: string;
     label: string;
     buttonClass?: string;
@@ -26,14 +26,14 @@ export default class ActionButton extends Component<
     return this.args.buttonClass ?? `button-${this.dashifiedLabel}`;
   }
 
-  @action handleClick() {
-    this.args.action();
-  }
+  handleClick = () => {
+    this.args.fn();
+  };
 
-  @action handleKeyPress(event: KeyboardEvent) {
+  handleKeyPress = (event: KeyboardEvent) => {
     if (event.code === 'Enter' || event.code === 'Space') {
       event.preventDefault();
       this.handleClick();
     }
-  }
+  };
 }

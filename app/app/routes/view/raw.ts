@@ -1,18 +1,22 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import type StoreService from '@ember-data/store';
-import type RouterService from '@ember/routing/router-service';
 import Transition from '@ember/routing/transition';
 
+import type StoreService from '@ember-data/store';
+import type RouterService from '@ember/routing/router-service';
+import type ViewRawController from 'minbin/controllers/view/raw';
+
+export type ViewRawRouteModel = Awaited<ReturnType<ViewRawRoute['model']>>;
+
 export default class ViewRawRoute extends Route {
-  @service store!: StoreService;
-  @service router!: RouterService;
+  @service declare store: StoreService;
+  @service declare router: RouterService;
+
+  declare controller: ViewRawController;
 
   beforeModel(transition: Transition) {
-    console.log('view raw beforeModel hook');
     const { id } = transition.to.params;
     if (!id || id.length < 7) {
-      // TODO: Throw NotFound here instead of aborting
       transition.abort();
       throw new Error('Paste not found');
     }

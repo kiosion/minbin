@@ -12,7 +12,8 @@ export interface ModalContent {
 
 export default class ModalService extends Service {
   @tracked isShowingModal = false;
-  @tracked modalContent!: ModalContent;
+
+  declare modalContent: ModalContent;
 
   @action open(content: Omit<ModalContent, 'cancel' | 'done'>) {
     (this.modalContent as Partial<ModalContent>) = content;
