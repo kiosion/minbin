@@ -4,8 +4,8 @@
   <Actions::Box
     @mode="create"
     @fns={{hash
-      create=(fn this.refresh)
-      save=(fn this.save)
+      create=this.refresh
+      save=this.save
       setEncrypted=(fn (mut this.model.encrypted))
       setBurn=(fn (mut this.model.burn))
     }}

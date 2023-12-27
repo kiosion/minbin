@@ -21,10 +21,6 @@ export interface ActionsBoxSignature {
 export default class ActionsBox extends Component<ActionsBoxSignature['Args']> {
   @tracked isRaised = false;
 
-  get mode() {
-    return this.args.mode;
-  }
-
   updateEncrypted = (value: boolean) => {
     this.args.options && (this.args.options.encrypted = value);
   };
