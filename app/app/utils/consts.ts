@@ -1,11 +1,19 @@
+import config from 'minbin/config/environment';
+
 export const DEFAULT_PASTE_CONTENT = 'Paste or type content here...';
 
 export const HOMEPAGE_CONTENT = `Welcome to MinBin!
 
-Use the button in the upper right 
+Use the button in the upper right
 to create a new paste to share with others,
 or check out the github repo for more info:
 https://github.com/kiosion/minbin
 
-Servals will die if you abuse this service.
+Servals will die if you abuse this service.${
+  config.commitHash
+    ? `
+
+Last commit: ${config.commitHash} (https://github.com/kiosion/minbin/commit/${config.commitHash})`
+    : ''
+}
 `;

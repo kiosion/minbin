@@ -21,7 +21,7 @@ export default class ApplicationRoute extends Route {
     });
 
     this.router.on('routeDidChange', () => {
-      this.loader.isLoading = false;
+      setTimeout(() => (this.loader.isLoading = false), 750);
     });
   }
 }

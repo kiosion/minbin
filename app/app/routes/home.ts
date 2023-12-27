@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
 import { HOMEPAGE_CONTENT } from 'minbin/utils/consts';
+
 import type StoreService from '@ember-data/store';
 
 export type HomeRouteModel = Awaited<ReturnType<HomeRoute['model']>>;

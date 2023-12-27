@@ -29,6 +29,8 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - api
+    environment:
+      - COMMIT_HASH=${COMMIT_HASH}
     network_mode: "host"
     volumes:
     # Virtual volume for ember-cli

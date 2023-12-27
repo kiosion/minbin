@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 module.exports = function (environment) {
-  let ENV = {
+  const ENV = {
     modulePrefix: 'minbin',
     environment,
     rootURL: '/',
@@ -13,6 +13,10 @@ module.exports = function (environment) {
 
     APP: {}
   };
+
+  if (process.env.COMMIT_HASH) {
+    ENV.commitHash = process.env.COMMIT_HASH;
+  }
 
   if (environment === 'development') {
     ENV.apiHost = 'http://localhost:3000';

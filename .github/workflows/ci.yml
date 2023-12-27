@@ -94,7 +94,7 @@ jobs:
       - name: Build App image
         if: steps.changed-files-app.outputs.any_changed == 'true'
         run: |
-          docker-compose build ember
+          COMMIT_HASH=$(git rev-parse --short HEAD) docker-compose build ember
       - name: Build images
         if: steps.changed-files-api.outputs.any_changed == 'false' && steps.changed-files-app.outputs.any_changed == 'false'
         run: |

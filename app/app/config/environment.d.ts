@@ -3,6 +3,7 @@
  *    import config from 'my-app/config/environment'
  */
 declare const config: {
+  commitHash?: string;
   environment: string;
   modulePrefix: string;
   podModulePrefix: string;
