@@ -44,4 +44,8 @@ const GET = async (req: Request, res: Response) => {
   }
 };
 
-export default { GET };
+const OPTIONS = async (req: Request, res: Response) => {
+  OK(res, { data: {} });
+};
+
+export default { GET, OPTIONS };

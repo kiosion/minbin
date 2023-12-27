@@ -1,6 +1,9 @@
-import Modifier, { ArgsFor } from 'ember-modifier';
+import Modifier from 'ember-modifier';
 import { assert } from '@ember/debug';
 import { registerDestructor } from '@ember/destroyable';
+
+import type { ArgsFor } from 'ember-modifier';
+import type Owner from '@ember/owner';
 
 export interface OnFocusModifierSignature {
   Args: {
@@ -28,7 +31,7 @@ export default class OnFocusModifier extends Modifier<OnFocusModifierSignature> 
   callback!: (state: boolean) => void;
   element!: Element;
 
-  constructor(owner: unknown, args: ArgsFor<OnFocusModifierSignature>) {
+  constructor(owner: Owner, args: ArgsFor<OnFocusModifierSignature>) {
     super(owner, args);
 
     registerDestructor(this, teardown);

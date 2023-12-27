@@ -28,6 +28,7 @@
     text-decoration: none;
     color: $colour-text--light;
     transition: all 50ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    user-select: none;
 
     i {
       font-style: italic;
@@ -138,7 +139,7 @@
         transform: translateX(42px);
         -webkit-transform: translateX(42px);
       }
-  
+
       i {
         transform: translateX(-22px);
         -webkit-transform: translateX(-22px);

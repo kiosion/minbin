@@ -10,5 +10,8 @@ export const setupRoutes = (app: Express) => {
   });
 
   app.post(`${API_ROUTE}/save`, SaveRoute.POST);
+  app.options(`${API_ROUTE}/save`, SaveRoute.OPTIONS);
+
   app.get(`${API_ROUTE}/get/:id`, ViewRoute.GET);
+  app.options(`${API_ROUTE}/get/:id`, ViewRoute.OPTIONS);
 };

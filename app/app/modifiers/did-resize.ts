@@ -3,6 +3,8 @@ import { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
 import { registerDestructor } from '@ember/destroyable';
 
+import type Owner from '@ember/owner';
+
 interface ResizeObserverService {
   isEnabled: boolean;
   observe: (
@@ -30,7 +32,7 @@ export default class DidResizeModifier extends Modifier<DidResizeModifierSignatu
   callback!: () => void;
   element!: Element;
 
-  constructor(owner: unknown, args: ArgsFor<DidResizeModifierSignature>) {
+  constructor(owner: Owner, args: ArgsFor<DidResizeModifierSignature>) {
     super(owner, args);
 
     registerDestructor(this, () => {

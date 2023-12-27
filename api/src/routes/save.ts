@@ -29,4 +29,8 @@ const POST = async (req: Request, res: Response) => {
   }
 };
 
-export default { POST };
+const OPTIONS = async (req: Request, res: Response) => {
+  OK(res, { data: {} });
+};
+
+export default { POST, OPTIONS };

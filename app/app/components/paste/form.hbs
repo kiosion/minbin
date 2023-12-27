@@ -1,4 +1,4 @@
-{{!-- template-lint-disable block-indentation --}}
+{{!-- template-lint-disable --}}
 <div
   id="{{this.id}}"
   class="paste-form"
@@ -14,8 +14,6 @@
   ></div>
 
   {{#if this.isCreate}}
-    {{!-- template-lint-disable no-autofocus-attribute --}}
-    {{!-- template-lint-disable no-down-event-binding --}}
     <textarea
       autofocus={{true}}
       id="{{this.id}}-content"

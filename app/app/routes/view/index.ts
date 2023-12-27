@@ -51,7 +51,7 @@ export default class ViewRoute extends Route {
       return await this.notFound(transition, id);
     }
 
-    if (!paste.decrypted) {
+    if (paste.encrypted && !paste.decrypted) {
       if (!key) {
         console.error(
           '[Warn] Paste is marked as encrypted, but no key provided. Unable to decrypt.'
