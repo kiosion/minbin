@@ -73,13 +73,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Check changed files in api
         id: changed-files-api
-        uses: tj-actions/changed-files@v35
+        uses: tj-actions/changed-files@v41
         with:
           files: |
             api/**
       - name: Check changed files in app
         id: changed-files-app
-        uses: tj-actions/changed-files@v35
+        uses: tj-actions/changed-files@v41
         with:
           files: |
             app/**
