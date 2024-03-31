@@ -1,32 +1,39 @@
-# compiled output
-_old
-**/dist/
-**/tmp/
+# The directory Mix will write compiled artifacts to.
+/_build/
 
-# dependencies
-**/bower_components/
-**/node_modules/
+# If you run "mix test --cover", coverage assets end up here.
+/cover/
 
-# misc
-**/.env*
-**/.pnp*
-**/.sass-cache
-**/.eslintcache
-**/connect.lock
-**/coverage/
-**/libpeerconnection.log
-**/npm-debug.log*
-**/testem.log
-**/yarn-error.log
-**/mongo*.txt
+# The directory Mix downloads your dependencies sources to.
+/deps/
 
-# ember-try
-**/.node_modules.ember-try/
-**/bower.json.ember-try
-**/npm-shrinkwrap.json.ember-try
-**/package.json.ember-try
-**/package-lock.json.ember-try
-**/yarn.lock.ember-try
+# Where 3rd-party dependencies like ExDoc output generated docs.
+/doc/
 
-# broccoli-debug
-**/DEBUG/
+# Ignore .fetch files in case you like to edit your project deps locally.
+/.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+*.ez
+
+# Temporary files, for example, from tests.
+/tmp/
+
+# Ignore package tarball (built via "mix hex.build").
+minbin-*.tar
+
+# Ignore assets that are produced by build tools.
+/priv/static/assets/
+
+# Ignore digested assets cache.
+/priv/static/cache_manifest.json
+
+# In case you use Node.js/npm, you want to ignore these.
+npm-debug.log
+/assets/node_modules/
+
+# Old files
+/old/
